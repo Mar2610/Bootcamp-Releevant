@@ -1,0 +1,57 @@
+/*
+etiqueta {
+    estilo de la etiqueta. Todas las etiquetas tendrán el mismo estilo
+}
+*/
+
+/*
+.clase {
+    estilo de la clase. Todas las etiquetas que tengan esta clase, presentarán los mismos estilos
+}
+*/
+
+/*
+id {
+    La etiqueta que tenga este id, presentará los estilos que definamos aquí
+}
+*/
+
+
+*{
+    color: chocolate;
+}
+
+/*Clase. Se puede compartir la misma clase con dos o más etiquetas*/
+.enlace {
+    color: violet;
+}
+
+/*Id. El id no se puede compartir, es único para cada propiedad*/
+#parrafo {
+    font-size: large;
+    color: darkblue;
+}
+
+a:link {
+    color: red;
+}
+
+div p {
+    color: brown;
+}
+
+div > p {
+    color: greenyellow;
+}
+
+#caja2 {
+    padding-top: 10px;
+}
+
+.table td:hover {
+    background-color: grey;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: yellow;
+}

@@ -1,0 +1,32 @@
+h1 {
+    border-bottom: solid blue;
+    text-align: center;
+}
+
+h2 {
+    border: solid grey;
+    text-align: center;
+
+}
+
+#datos {
+    border-bottom: dotted red;
+    border-top: dotted red;
+}
+
+#contenido {
+    border: dashed greenyellow;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 700px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+}

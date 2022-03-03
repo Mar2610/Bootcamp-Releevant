@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheetSheet</title>
+</head>
+
+<body>
+    <!-- COMENTARIO -->
+
+    <!--Enlaces internos y externos-->
+    <a href="https://www.google.es" target="_blank">Ir a Google</a>
+    <!--Enlaces externos-->
+    <a href="index.html" target="_blank">Home</a>
+    <!--Enlaces internos-->
+
+    <!--Salto de línea-->
+    <br>
+
+    <!--Línea separadora-->
+    <hr>
+
+    <!--Títulos / Headings-->
+    <h1>Título 1</h1>
+    <h2>Título 2</h2>
+    <h3>Título 3</h3>
+    <h4>Título 4</h4>
+    <h5>Título 5</h5>
+    <h6>Título 6</h6>
+
+    <hr>
+
+    <!--Textos / Párrafos / Paragraphs-->
+    <p>
+        Lorem ipsum <strong>sit amet consectetur adipisicing</strong> elit. Autem eos accusamus culpa pariatur non amet
+        nesciunt <s>laudantium id ipsam! Quam voluptates nisi</s> rem molestiae et amet officia pariatur minima autem
+        non,
+        praesentium cumque saepe ad <b>officiis odit unde obcaecati dolor</b>, maxime in <em>beatae ipsa. Error
+            recusandae qui id
+            culpa illum</em>.
+        <!--Diferencia entre b y strong: Strong es para dar importancia y en el motor de Google lo vas a encontrar antes-->
+    </p>
+
+    <pre>
+        Lorem ipsum <strong>sit amet consectetur adipisicing</strong> elit. Autem eos accusamus culpa pariatur non amet
+        nesciunt
+        
+        <s>laudantium id ipsam! Quam voluptates nisi</s> rem molestiae et amet officia pariatur minima autem non,
+        praesentium                         cumque saepe ad <b>officiis odit unde obcaecati dolor</b>, maxime in <em>beatae ipsa. Error recusandae qui id
+        culpa illum</em>.
+        <!--Esta etiqueta pre te respeta el formato que le des al texto-->
+    </pre>
+
+    <p>
+        La molécula preferida de casi cualquier desarrollador es:
+        C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>0<sub>2</sub>, también conocida como cafeína.
+    </p>
+
+    <p>
+        El teorema de Pitágoras se conoce por la ecuación de:
+    </p>
+    <p>
+        <var>a</var><sup>2</sup>+<var>b</var><sup>2</sup>=<var>c</var><sup>2</sup>
+    </p>
+
+    <br>
+    <hr>
+    <hr>
+
+    <!--Contenedores / Containers-->
+
+    <!--Atajo enlaces: nav>a*3{Enlace} -->
+    <nav>
+        <div>
+            <a href="">Enlace 1</a>
+            <a href="">Enlace 2</a>
+
+        </div>
+        <div>
+            <a href="">Enlace 3</a>
+        </div>
+        <!--Para agrupar enlaces se meten en un div-->
+    </nav>
+
+    <section>
+        <article>
+            <h1>Título del artículo</h1>
+            <p>Contenido del artículo</p>
+        </article>
+    </section>
+
+    <aside>
+        <p>Menú generalmente lateral</p>
+    </aside>
+
+    <footer>
+        <p>Pie de página</p>
+        <address>Malaga 29296</address>
+    </footer>
+
+    <div>
+        <!--Contenedor genérico de elementos, ocupa todo el ancho de la página. Es el contenedor por defecto-->
+        <p>Contenedor genérico</p>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <!--Listas / Lists-->
+
+    <ul>
+        <!--Listas desordenadas / Unordered lists-->
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3
+            <ul>
+                <li>Elemento
+                    <ul>
+                        <li>Elemento</li>
+                        <!--Listas anidadas-->
+                    </ul>
+                </li>
+            </ul>
+        <li>Elemento 4</li>
+        </li>
+    </ul>
+
+    <ol start="500">
+        <!--Listas ordenadas / Ordered lists-->
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+    </ol>
+
+    <br>
+    <hr>
+    <br>
+
+    <!--Tablas / Tables-->
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>jdoe@email.com</td>
+                <td>48</td>
+            </tr>
+            <tr>
+                <td>Marta</td>
+                <td>marta@email.com</td>
+                <td>27</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <hr>
+    <br>
+
+    <!--Formularios / Forms-->
+    <form action="https://www.google.es" method="get">
+        <div>
+            <label for="nameInput">Nombre:</label>
+            <input 
+            type="text" 
+            id="nameInput" 
+            name="userName" 
+            placeholder="Introduce tu nombre" 
+            value="">
+            <!--El id relaciona el input con el label y el name facilita la identificación del 
+            servidor cuando se envía el formulario-->
+        </div>
+
+        <br>
+
+        <div>
+            <label for="lasNameInput">Apellidos:</label>
+            <input 
+            type="text" 
+            id="lastNameInput" 
+            name="lastName" 
+            placeholder="Introduce tus apellidos" 
+            value="">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="emailInput">Email:</label>
+            <input 
+            required 
+            type="email" 
+            id="emailInput" 
+            name="email" 
+            placeholder="Introduce tu email" 
+            value="">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="passwordInput">Contraseña:</label>
+            <input 
+            type="password" 
+            id="passwordInput" 
+            name="password" 
+            placeholder="*******" 
+            value="">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="mensajeInput">Mensaje:</label> <br>
+            <textarea 
+            name="messageInput" 
+            id="messageInput" 
+            cols="30" 
+            rows="10">
+            </textarea>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="genderInput">Género:</label>
+            <select name="genderInput" id="genderInput">
+                <option value="" hidden></option>
+                <option value="Female">Femenino</option>
+                <option value="Male">Masculino</option>
+                <option value="Other">Otro</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="ageInput">Edad:</label>
+            <input 
+            type="number" 
+            name="ageInput" 
+            id="ageInput" 
+            min="0" 
+            max="120">
+        </div>
+
+        <br>
+        
+        <div>
+            <label for="birthdayInput">Fecha de nacimiento:</label>
+            <input 
+            type="date" 
+            name="birthdayInput" 
+            id="birthdayInput">
+        </div>
+
+        <br>
+
+        <div>
+            <legend>Género:</legend>
+
+            <br>
+
+            <div>
+                <input 
+                type="radio" 
+                name="gender" 
+                id="female" 
+                value="female">
+                <label for="female">Femenino</label>
+            </div>
+
+            <div>
+                <input 
+                type="radio" 
+                name="gender" 
+                id="male" 
+                value="male">
+                <label for="male">Masculino</label>
+            </div>
+
+            <div>
+                <input 
+                type="radio" 
+                name="gender" 
+                id="other" 
+                value="other">
+                <label for="other">Otro</label>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div>
+            <label for="avatar">Selecciona una foto de perfil</label>
+            <input 
+            type="file" 
+            name="avatarInput" 
+            id="avatar"
+            accept="image/png, image/jpeg">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="satisfaction">Elige tu grado de satisfacción:</label>
+            <input 
+            type="range"
+            min="0"
+            max="10"
+            step="0.1">
+        </div>
+
+        <br>
+
+        <div>
+            <label>
+                <input type="checkbox" id="checkbox" value="firstCheckbox">
+                Este es mi primer Checkbox
+            </label>
+        </div>
+
+        <br>
+
+        <div>
+            <input type="time"><br>
+            <input type="week">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="cardBran">Marcas de Coche</label>
+            <input type="text" id="carBranInput" name="carBran" list="carBranList">
+            <datalist id="carBranList">
+                <option value="BMW"></option>
+                <option value="Mercedes"></option>
+                <option value="Ford"></option>
+                <option value="Volskwagen"></option>
+            </datalist>
+        </div>
+
+        <br>
+
+        <fieldset id="personalInfo">
+            <legend>Información personal</legend>
+            <div>
+                <label for="nameInput">Nombre:</label>
+                <input 
+                type="text" 
+                id="nameInput" 
+                name="userName" 
+                placeholder="Introduce tu nombre" 
+                value="">
+                <!--El id relaciona el input con el label y el name facilita la identificación del 
+                servidor cuando se envía el formulario-->
+            </div>
+    
+            <br>
+    
+            <div>
+                <label for="lasNameInput">Apellidos:</label>
+                <input 
+                type="text" 
+                id="lastNameInput" 
+                name="lastName" 
+                placeholder="Introduce tus apellidos" 
+                value="">
+            </div>
+
+        </fieldset>
+
+        <label for="fuelLevel">Nivel de gasolina</label>
+        <meter min="0" max="100" value="60" id="fuelLevel"></meter>
+
+        <br>
+
+        <label for="progress">Progreso</label>
+        <progress max="100" value="33" id="progress"></progress>
+
+        <br>
+        
+        <input type="submit" value="Enviar">
+
+    </form>
+
+    <br><hr><br>
+
+    <!--Multimedia / Media-->
+    
+    <img src="../images/Gatito.jpg" alt="lovely cat" width="600">
+    <img src="https://comunidad.retorn.com/wp-content/uploads/cache/2018/09/gatitos/3008811440.jpg" alt="lovely cat" width="600">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/sB-OZL3xqEk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    
+
+</body>
+
+<script src="../JS/cheatsheet.js"></script>
+
+
+
+</html>

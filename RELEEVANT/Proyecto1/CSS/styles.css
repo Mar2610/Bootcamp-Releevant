@@ -1,0 +1,72 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color:darkgoldenrod;
+    padding: 1%;
+}
+
+.navbar a:hover {
+    background-color:darksalmon;
+    padding: 0.4%;
+}
+
+.navbar a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+}
+
+body {
+    font-size: 12px; /* 1rem = 10px */
+    font-family: 'Mochiy Pop P One', sans-serif;
+    background-color: burlywood;
+}
+
+h1 {
+    text-align: center;
+    color:olive;
+    font-size: 2rem;
+}
+
+.back {
+    background-image: url(https://as01.epimg.net/deporteyvida/imagenes/2019/06/08/portada/1559981305_235123_1559981370_noticia_normal.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 410px;
+    padding: 20px;
+}
+
+.container {
+    text-align: left;
+    display: flex;
+}
+
+.child {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    text-align: center;
+
+}
+
+.knowledge {
+    display: flex;
+    flex-direction: row;
+}
+
+.knowledge p {
+    padding: 1%;
+    width: 30%;
+}
+
+footer {
+    text-align: center;
+}
+
+footer a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: olive;
+}
+

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+
+<body>
+    <h1>Formulario de registro</h1>
+
+    <br>
+    
+    <form>
+    
+    <div>
+        <input type="submit" value="Enviar">
+    </div>
+
+    <br><br>
+
+
+    <div>
+        <label for="nameInput">Nombre:</label>
+        <input 
+        type="text" 
+        id="nameInput" 
+        name="userName" 
+        placeholder="Elon" 
+        value="">
+
+        <label for="lasNameInput">Apellido:</label>
+        <input 
+        type="text" 
+        id="lastNameInput" 
+        name="lastName" 
+        placeholder="Musk" 
+        value="">
+    </div>
+
+
+    <br><br>
+
+
+    <div>
+        <label for="ageInput">Edad:</label>
+        <input 
+        placeholder="40" 
+        type="number" 
+        name="ageInput" 
+        id="ageInput" 
+        min="0" 
+        max="">
+    </div>
+
+
+    <br><br>
+
+
+    <div>
+        <label for="emailInput">Email:</label>
+        <input 
+        type="email" 
+        id="emailInput" 
+        name="email" 
+        placeholder="nombre@email.com" 
+        value="">
+    </div>
+
+
+    <br><br>
+
+
+    <div>
+        <label for="passwordInput">Password:</label>
+        <input 
+        type="password" 
+        name="passwordInput" 
+        id="passwordInput" 
+        placeholder="********">
+    </div>
+
+
+    <br><br>
+
+
+    <div>
+        <input 
+        type="radio" 
+        name="sex" 
+        id="female" 
+        value="female">
+        <label for="female">Mujer</label>
+    </div>
+
+
+    <div>
+        <input 
+        type="radio" 
+        name="sex" 
+        id="male" 
+        value="male">
+        <label for="male">Hombre</label>
+    </div>
+
+
+    <div>
+        <input type="radio" name="sex" id="other" value="other">
+        <label for="other">Otro</label>
+    </div>
+
+
+    <br><br>
+
+
+    <div>
+        <label for="countryInput">País:</label>
+            <input type="text" id="countryInput" name="countryInput" list="countryList">
+            <datalist id="countryList">
+                <option value="España"></option>
+                <option value="Argentina"></option>
+                <option value="Reino Unido"></option>
+                <option value="Alemania"></option>
+            </datalist>
+    </div>
+
+
+    <br><br>
+
+
+    <div>
+        <label for="languageInput">Lenguaje de programación:</label>
+        <select name="languageInput" id="languageInput">
+            <option value="jscript">Javascript</option>
+            <option value="php">PHP</option>
+        </select>
+    </div>
+
+
+    <br><br>
+
+
+    <div>
+        <input 
+        type="radio" 
+        name="academy" 
+        id="academyInput" 
+        value="academyInput">
+        <label for="academyInput">Releevant</label>
+    </div>
+
+
+    <div>
+        <input 
+        type="radio" 
+        name="academy" 
+        id="academyInput" 
+        value="academyInput"
+        disabled>
+        <label for="academyInput">Academia 2</label>
+    </div>
+
+
+    <div>
+        <input 
+        type="radio" 
+        name="academy" 
+        id="academyInput" 
+        value="academyInput"
+        disabled>
+        <label for="academyInput">Academia 3</label>
+    </div>
+
+
+    <br><br>
+
+
+    <div>
+        <label>
+            <input 
+            type="checkbox" 
+            id="checkbox" 
+            value="firstCheckbox">
+            Acepto recibir cientos de miles de correos irrelevantes
+        </label>
+    </div>
+
+
+    <div>
+        <label>
+            <input type="checkbox" id="checkbox" value="firstCheckbox">
+            Acepto los términos y condiciones
+        </label>
+    </div>
+
+
+    <br><br>
+
+
+    <button>Enviar</button>
+    <button type="reset">Vaciar formulario</button>
+
+    </form>
+
+</body>
+
+</html>

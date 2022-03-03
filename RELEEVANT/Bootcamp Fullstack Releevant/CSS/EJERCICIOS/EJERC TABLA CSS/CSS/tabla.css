@@ -1,0 +1,61 @@
+table {
+    border: black 5px solid;
+}
+
+td {
+    border: black 1px solid;
+}
+
+tr {
+    border: black 1px solid;
+}
+
+#lineOne {
+    color: teal;
+}
+
+#lineTwo {
+    color: red;
+}
+
+#lineThree {
+    color: blue;
+}
+
+#lineFour {
+    color: orange;
+}
+
+#lineFive {
+    color: purple;
+}
+
+#lineSix {
+    color: olive;
+}
+
+#lineSeven {
+    color: fuchsia;
+}
+
+#lineEight {
+    color: green;
+}
+
+
+/* Los hijos de la etiqueta td */
+td:nth-child(1) {
+    background-color: white;
+}
+
+td:nth-child(2) {
+    background-color: red;
+}
+
+td:nth-child(3) {
+    background-color: green;
+}
+
+td:nth-child(4) {
+    background-color: blue;
+}
