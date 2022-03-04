@@ -32,3 +32,10 @@ console.clear();
 
 const prompt = require("prompt-sync")();
 
+const letterArray = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "x", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
+
+let numberDni = Number(prompt("Introduce DNI: "));
+
+let letter = numberDni % 23;
+
+console.log(numberDni+letterArray[letter]);

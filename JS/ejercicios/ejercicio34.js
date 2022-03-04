@@ -16,7 +16,7 @@ do {
     if (number < randomNumber){
         console.log("El número es mayor");
     } else {
-        console.log("El número es menor")
+        console.log("El número es menor");
     }
     
     

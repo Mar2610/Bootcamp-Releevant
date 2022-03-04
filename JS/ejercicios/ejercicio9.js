@@ -5,7 +5,7 @@
 
 const prompt = require("prompt-sync")();
 
-let qualification1 = Number(prompt("Nota Historia: "));
+/*let qualification1 = Number(prompt("Nota Historia: "));
 let qualification2 = Number(prompt("Nota Lengua: "));
 let qualification3 = Number(prompt("Nota Matemáticas: "));
 let qualification4 = Number(prompt("Nota Informática: "));
@@ -18,4 +18,25 @@ if (promedio >= 5) {
     console.log (`${promedio} Aprobado`);
 } else {
     console.log ("A tu casa");
+}*/
+
+
+
+let notas = Number(prompt("Número de notas a introducir: "));
+const arrayNotas = [];
+let sum = 0;
+let promedio = 0;
+
+for (i = 0; i < notas; i++) {
+    arrayNotas[i] = Number(prompt(`Introduce la ${i+1} nota: `));
+    sum += arrayNotas[i];
+}
+
+promedio = sum / notas;
+console.log("El promedio es: ", promedio);
+
+if (promedio >= 5) {
+    console.log("Aprobado");
+} else {
+    console.log("Suspenso");
 }
