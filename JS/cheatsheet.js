@@ -126,3 +126,6 @@ const isGod = demon !== "var" || isAlive === true;
 
 // Se utiliza la exclamación para cambiarle el valor a un elemento booleano
 const isDead = !isAlive;
+
+// Para sumar los elementos que hay dentro de un array
+sum += miArray[i];

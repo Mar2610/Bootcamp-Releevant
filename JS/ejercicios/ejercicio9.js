@@ -23,16 +23,16 @@ if (promedio >= 5) {
 
 
 let notas = Number(prompt("Número de notas a introducir: "));
-const arrayNotas = [];
+let nota;
 let sum = 0;
 let promedio = 0;
 
 for (i = 0; i < notas; i++) {
-    arrayNotas[i] = Number(prompt(`Introduce la ${i+1} nota: `));
-    sum += arrayNotas[i];
+    nota = Number(prompt(`Introduce la nota ${i+1}: `));
+    sum += nota;
 }
 
-promedio = sum / notas;
+promedio = sum / nota;
 console.log("El promedio es: ", promedio);
 
 if (promedio >= 5) {
