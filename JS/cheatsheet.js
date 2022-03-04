@@ -129,3 +129,6 @@ const isDead = !isAlive;
 
 // Para sumar los elementos que hay dentro de un array
 sum += miArray[i];
+
+// Para invertir el contenido de un array en otro array
+miArray2 = [...miArray].reverse();

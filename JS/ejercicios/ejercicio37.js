@@ -36,6 +36,6 @@ const letterArray = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "x", "B",
 
 let numberDni = Number(prompt("Introduce DNI: "));
 
-let letter = numberDni % 23;
+let index = numberDni % 23;
 
-console.log(numberDni+letterArray[letter]);
+console.log(numberDni+letterArray[index]);

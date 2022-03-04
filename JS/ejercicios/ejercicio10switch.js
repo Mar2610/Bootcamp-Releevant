@@ -8,7 +8,7 @@ const prompt = require("prompt-sync")();
 const sueldo = Number(prompt("Sueldo: "));
 const categoria = Number(prompt("Categoría entre 1-4: "));
 if (!isNaN(sueldo) && !isNaN(categoria)) {
-  let incremento = 0;
+  let incremento = 1;
   switch (categoria) {
     case 1: {
       incremento = 1.15;
@@ -27,7 +27,7 @@ if (!isNaN(sueldo) && !isNaN(categoria)) {
       break;
     }
     default: {
-      console.log("Las categorias son entre 1-4");
+      console.log("Categoría errónea");
     }
   }
   if (incremento > 0) {
