@@ -15,3 +15,4 @@ if (category === 1) {
     increment = salary *= 1.03;
 }
  console.log(`El incremento es ${increment}`);
+
