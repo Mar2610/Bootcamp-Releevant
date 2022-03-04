@@ -20,5 +20,3 @@ for (i=0; i<longitud; i++) {
 
 console.log("La suma es ", sum);
 
-
-
