@@ -5,11 +5,11 @@ atrás se introducirá por teclado. Cuando llegue al final, se imprimirá "¡¡R
 
 const prompt = require("prompt-sync")();
 
-const N = prompt("Introduce número: ")
+const N = prompt("Introduce número: ");
 
-let espera = setTimeout(tiempoEspera, N*1000)
+let espera = setTimeout(tiempoEspera, N*1000);
 
 function tiempoEspera () {
-    console.log("RING")
+    console.log("RING");
     clearTimeout(espera); // Para limpiar el temporizador o acabar intervalos
 }
