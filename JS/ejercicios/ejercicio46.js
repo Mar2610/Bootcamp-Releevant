@@ -6,13 +6,15 @@ const prompt = require("prompt-sync")();
 
 const length = Number(prompt("Longitud del array: "));
 let miArray = [];
+const comparacion = (a,b) => (a<b) ? 1 : -1;
 
 for (let i = 0; i < length; i++) {
-  miArray[i] = prompt("Introduce número: ");
+  miArray[i] = Math.floor(Math.random()*20);
 }
+console.log (miArray);
 
-miArray.sort(function (a, b) {
-  return b - a;
-});
+miArray.sort();
 
 console.log(miArray);
+
+// Función flecha: (x,y) => {return x-y;}
