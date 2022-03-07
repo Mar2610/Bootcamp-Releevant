@@ -33,5 +33,7 @@ function randomValue(min, max) {
 console.log(positive);
 console.log("Array:", miArray);
 console.log("Números positivos:", positive);
-console.log("Promedio números positivos:", positiveSum / positive);
+console.log(`El promedio de positivos es: ${(positive === 0) ? 0: positiveSum/positive}`);
 console.log("Promedio de todos los números:", totalSum / miArray.length);
+
+// El promedio de positivos es: ${(positive === 0) ? 0: positiveSum/positive};

@@ -11,17 +11,11 @@ pantalla:
 4: Dividir
 5: Salir del programa*/
 
-const prompt = require("prompt-sync")();
+const operacion = [function (x,y) {return x+y}, (x,y) => {return x-y;}, (x,y) => x*y, (x,y) => x/y];
+const numero1 = 10;
+const numero2 = 5;
 
-let number1 = Number(prompt("Introduce un número: "));
-let number2 = Number(prompt("Introduce el segundo número: "));
-
-let suma = number1 + number2;
-let resta = number1 - number2;
-let multiplicacion = number1 * number2;
-let division = number1 / number2;
-
-console.log("La suma es: " + suma);
-console.log("La resta es: " + resta);
-console.log("La multiplicacion es: " + multiplicacion);
-console.log("La division es: " + division);
+console.log(operacion[0] (numero1,numero2));
+console.log(operacion[1] (numero1,numero2));
+console.log(operacion[2] (numero1,numero2));
+console.log(operacion[3] (numero1,numero2));

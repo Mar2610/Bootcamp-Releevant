@@ -3,16 +3,26 @@ Partir del ejercicio 28 pero esta vez realizar un reloj digital completo que nun
 estructura horas:minutos:segundos. Ejemplo de salida: 23:15:39
 Nota: deberás utilizar “Esperar” y “Limpiar pantalla”.*/
 
-console.clear();
-const prompt = require("prompt-sync")();
+let hour = 0;
+let minute = 0;
+let second = 0;
 
-const hours = prompt("Hora: ");
-const minutes = prompt("Minutos: ");
-const seconds = prompt("Segundos: ");
-
-let espera = setTimeout(tiempoEspera, );
-
-function tiempoEspera () {
-    console.log("RING");
-    clearTimeout(espera); // Para limpiar el temporizador o acabar intervalos
-}
+setInterval (() => { // Función flecha
+    console.clear();
+    if (second===59) {
+        second = 0;
+        if (minute===59) {
+            minute = 0;
+            if (hour === 23) {
+                hour = 0;
+            } else {
+                hour++;
+            }
+        } else {
+            minute++;
+        }
+    } else {
+        second++;
+    }
+    console.log(`${hour}:${minute}:${second}`);
+},1000);
