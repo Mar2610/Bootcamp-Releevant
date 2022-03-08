@@ -7,7 +7,32 @@ c) ¿En qué mes se registró el mayor coste de producción en bebidas, y en qu�
 coste?
 d) ¿Cuál fue el que tuvo menor coste de producción en diciembre?*/
 
-const prompt = require("prompt-sync")();
-
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+const productCost = ["Dulces", "Bebidas", "Conservas"];
+const max = months.length;
+const maxProduct = productCost.length;
 
+let costes = [];
+
+for (let i = 0; i < maxProduct; i++) {
+    const item = [];
+    for (let j = 0; j < max; j++){
+        item[j] = Math.floor(Math.random()*100000)+20000;
+    }
+    costes[i] = item;
+}
+console.log(costes);
+
+let maxSweet = -1;
+let maxPosicion = -1;
+for(let i = 0; i < max; i++) {
+    if (costes[0][i] > maxSweet) {
+        maxSweet = costes[0][i];
+        maxPosicion = i;
+    }
+}
+
+console.log(costes[0]);
+
+/*console.log(`El mayor coste de producción de dulces fue ${Math.max(...costes[0])} y fue en el mes de ${months[2]}`);*/
+// Forma fácil de hacerlo

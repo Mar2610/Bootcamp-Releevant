@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Factorial</title>
+  </head>
+  <body>
+    <label for="numero">Número</label>
+    <input type="text" id="numero" onclick="vaciar()" />
+    <button type="button" onclick="calcular()">Calcular</button>
+    <script type="text/javascript">
+      function vaciar() {
+        document.getElementById("numero").value = "";
+      }
+
+      function calcular() {
+        const num = document.getElementById("numero").value;
+        alert(`El factorial de ${num} es ${factorial(num)}`);
+      }
+
+      function factorial(numero) {
+        return numero !== 1 ? numero * factorial(numero - 1) : 1;
+      }
+    </script>
+  </body>
+</html>

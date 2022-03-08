@@ -4,18 +4,16 @@ datos se utiliza una estructura Mientras, sin saber a priori la cantidad de dato
 Pista: Los datos alfanuméricos (strings) también se pueden comparar con los operadores < y >.*/
 const prompt = require("prompt-sync")();
 
-const length = Number(prompt("Tamaño del array: "));
 let miArray = [];
-const comparacion = (a,b) => (a>b) ? 1 : -1;
+//const comparacion = (a,b) => (a>b) ? 1 : -1; Esto solo si son números o arrays
 let i = 0;
-
+let item;
 do {
-    miArray[i] = prompt("Nombre: ");
-    i++;
-} while (i<length)
+    item = prompt("Nombre: ");
+    if(item !== "") {
+        miArray[i++] = item;
+    }
+} while (item !== "");
 
 console.log (miArray);
-
-miArray.sort(comparacion);
-
-console.log(miArray);
+console.log(miArray.sort((a,b) => (a<b) ? 1 : -1)); //Cuando son strings, con el .sort es suficiente
