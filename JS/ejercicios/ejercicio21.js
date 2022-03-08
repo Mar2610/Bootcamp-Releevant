@@ -28,7 +28,7 @@ while (number > 0) {
 }
 
 for (let i=0; i<indice; i++) {
-    media = miArray[i] + media;
+    media += miArray[i];
 }
 
 media = media / (miArray.length);
