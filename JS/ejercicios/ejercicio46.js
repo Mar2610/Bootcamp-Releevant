@@ -6,15 +6,14 @@ const prompt = require("prompt-sync")();
 
 const length = Number(prompt("Longitud del array: "));
 let miArray = [];
-const comparacion = (a,b) => (a<b) ? 1 : -1;
+const comparacion = (a,b) => (a<b) ? 1 : -1; /* Función flecha: la metes en una variable/constante, lo igualas a los
+                                                parámetros de la función y después de la flecha pones la sentencia*/
 
 for (let i = 0; i < length; i++) {
   miArray[i] = Math.floor(Math.random()*20);
 }
 console.log (miArray);
 
-miArray.sort();
+miArray.sort(); // Función que invierte los elementos del array
 
 console.log(miArray);
-
-// Función flecha: (x,y) => {return x-y;}
