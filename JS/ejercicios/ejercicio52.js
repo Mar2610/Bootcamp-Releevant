@@ -7,17 +7,15 @@ const prompt = require("prompt-sync")();
 
 let N = [];
 const max = 10;
-const comprobacionN = Number(prompt("Número a comprobar: "));
-let N2 = 0;
-let posicion = 0;
-const comprobacion = (numero, posicion) => (numero === posicion) ? true : false;
+const numero = Number(prompt("Número a comprobar: "));
+let posicion = -1;
+const comprobacion = (numero, posicion) => (numero === posicion);
 
 for (let i = 0; i<max; i++) {
     N[i] = Math.floor(Math.random()*15)+1;
-    if(comprobacion(comprobacionN, N[i]) && posicion<1) {
-        N2 = N[i];
+    if(comprobacion(numero, N[i]) && posicion<0) {
         posicion = i;
-        console.log(`El número ${comprobacionN} está incluido en el array y su índice es ${posicion}`);
+        console.log(`El número ${numero} está incluido en el array y su índice es ${posicion}`);
     }
 }
 
