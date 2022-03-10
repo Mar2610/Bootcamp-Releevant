@@ -4,5 +4,6 @@ número primo si los únicos enteros positivos que lo dividen son exactamente 1 
 
 const prompt = require("prompt-sync")();
 
+
 let N = Number(prompt("Número: "));
 
