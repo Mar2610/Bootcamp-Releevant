@@ -12,11 +12,12 @@
 -Al crear el objeto se asigna también el conductor
 -No pueden subir más pasajeros que los máximos admitidos y no pueden bajar más de los que hay.*/
 
+// Clase dedicada a las propiedades del bus
 function bus (capacidad, conductor) { // No tiene parámetro "pasajeros" porque se inicializa en 0
     this.capacidad = capacidad;
     this.pasajeros = 0;
     this.conductor = conductor;
-    this.conductor.asignarBus(this); // Le asignamos este bus al conductor actual a través de la función asignarBus
+    this.conductor.asignarBus(this); // Al conductor actual (this.conductor) le asignamos (asignarBus) el bus actual (this)
     this.subir = function (pasajeros) { 
         console.log(`El autobús tiene ${this.pasajeros} y van a subir ${pasajeros} más`);
         if (this.pasajeros+pasajeros<=this.capacidad)
@@ -28,14 +29,16 @@ function bus (capacidad, conductor) { // No tiene parámetro "pasajeros" porque 
             this.pasajeros -= pasajeros; // A los pasajeros que ya hay, se le restan los que bajan
         }
     }
+    // Método para cambiar de conductor
     this.cambiarConductor = function (conductor) {
-        this.conductor.asignarBus (null); // El conductor actual se queda sin bus
-        this.conductor = conductor; // Se actualiza el conductor al que se pasa como objeto
-        this.conductor.asignarBus(this); // Al nuevo conductor se le asigna el bus actual
+        this.conductor.asignarBus (null); // El conductor actual(this.conductor) se queda sin bus (null)
+        this.conductor = conductor; // Se actualiza el conductor al que se pasa como propiedad
+        this.conductor.asignarBus(this); // Al nuevo conductor(this.conductor) se le asigna el bus actual (this)
 
     }
 }
 
+// Clase dedicada a las propiedades del conductor
 function conductor (nombre, licencia) {
     this.nombre = nombre;
     this.num = licencia;
@@ -45,16 +48,16 @@ function conductor (nombre, licencia) {
     }
 }
 
-let pepe = new conductor ("pepe","ii");
-let bus1 = new bus (10,pepe);
-bus1.subir (8);
-bus1.bajar(3);
-let juan = new conductor("juan","oo");
-bus1.cambiarConductor(juan);
+let pepe = new conductor ("pepe","ii"); // Objeto que creo a partir de las propiedades de la clase conductor
+let bus1 = new bus (10,pepe); // Objeto que creo a partir de las propiedades de la clase bus
+bus1.subir (8); // Se implementa el método "subir" al objeto creado anteriormente "bus1"
+bus1.bajar(3); // Se implementa el método "bajar" al objeto creado anteriormente "bus1"
+let juan = new conductor("juan","oo"); // Objeto que creo a partir de las propiedades de la clase conductor
+bus1.cambiarConductor(juan); // Se implementa el método "cambiarConductor" al objeto creado anteriormente "juan"
 
-let bus2 = new bus(40, pepe);
-bus2.subir (20);
-bus2.bajar (10);
+let bus2 = new bus(40, pepe); // Objeto que creo a partir de las propiedades de la clase bus
+bus2.subir (20); // Se implementa el método "subir" al objeto creado anteriormente "bus1"
+bus2.bajar (10); // Se implementa el método "bajar" al objeto creado anteriormente "bus1"
 
 console.log(bus1);
 console.log(bus2);

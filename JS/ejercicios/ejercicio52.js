@@ -10,6 +10,7 @@ const max = 10;
 const comprobacionN = Number(prompt("Número a comprobar: "));
 let N2 = 0;
 let posicion = 0;
+const comprobacion = (numero, posicion) => (numero === posicion) ? true : false;
 
 for (let i = 0; i<max; i++) {
     N[i] = Math.floor(Math.random()*15)+1;
@@ -20,13 +21,4 @@ for (let i = 0; i<max; i++) {
     }
 }
 
-function comprobacion (numero, posicion) {
-    for(let i = 0; i<max; i++){
-        if(numero === posicion) {
-            return true;
-        }
-    }
-}
-
 console.log(N);
-console.log(N2);

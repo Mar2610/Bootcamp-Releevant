@@ -14,11 +14,11 @@ function producto (codigo, nombre, precio) {
 }
 
 // Introducir objetos a una clase
-let producto1 = new producto(2020, "Tomate", 1.50);
+let producto1 = new producto(2020, "Tomate", 1.50); // Los valores que están entre los paréntesis son los que le vamos a asignar a los valores de la clase
 let producto2 = new producto(2568, "Patata", 2.30);
 let producto3 = new producto(1489, "Aguacate", 4.50);
 
-// Crear un array con los valores del objeto 
+// Crear un array con los valores de cada objeto 
 let miarray = [producto1, producto2, producto3];
 
 // Recorrer el array e imprimir los valores de cada producto 
