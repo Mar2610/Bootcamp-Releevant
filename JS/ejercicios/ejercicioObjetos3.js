@@ -19,7 +19,7 @@ function bus (capacidad, conductor) { // No tiene parámetro "pasajeros" porque 
     this.conductor = conductor;
     this.conductor.asignarBus(this); // Al conductor actual (this.conductor) le asignamos (asignarBus) el bus actual (this)
     this.subir = function (pasajeros) { 
-        console.log(`El autobús tiene ${this.pasajeros} y van a subir ${pasajeros} más`);
+        console.log(`El autobús tiene ${this.pasajeros} y van a subir ${pasajeros} pasajeros más`);
         if (this.pasajeros+pasajeros<=this.capacidad)
             this.pasajeros += pasajeros; // A los pasajeros que ya hay, se le suman los que se le da 
         console.log(`El autobús tiene ${this.pasajeros}`);
