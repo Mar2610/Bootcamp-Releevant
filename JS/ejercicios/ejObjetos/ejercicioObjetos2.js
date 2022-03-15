@@ -17,7 +17,7 @@ function cliente (nombre, direccion, telefono, nif) {
 
 function elementos (descripcion, cantidad, precio) {
     this.descripcion = descripcion;
-    this.cantidad = cantidad, 
+    this.cantidad = cantidad;
     this.precio = precio;
 }
 
