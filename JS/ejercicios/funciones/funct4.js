@@ -3,12 +3,17 @@
 como resultado una cadena de texto que indica si el número es par o impar. Mostrar por pantalla
 el resultado devuelto por la función.*/
 
-function parOimpar (number) {
-    if (number % 2 === 0) {
-        return "par";
-    } else {
-        return "impar";
-    }
-}
+// function parOimpar (number) {
+//     if (number % 2 === 0) {
+//         return "par";
+//     } else {
+//         return "impar";
+//     }
+// }
 
-console.log(parOimpar(7));
+// console.log(parOimpar(7));
+
+// Función flecha
+const parOimpar = (number) => (number % 2 === 0 ) ? "par" : "impar";
+
+console.log(parOimpar(4));

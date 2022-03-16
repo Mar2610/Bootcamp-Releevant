@@ -47,7 +47,12 @@ function Catalogo (producto) {
     this.delete = function (codigo) {
         const posicion = this.lista.findIndex ((item) => item.codigo === codigo);
         if (posicion >= 0) {
-            this.lista.splice (posicion,1);
+            this.lista.splice (posicion,1); /* Los parámetros que hay que darle a .splice son la posicion del
+                                                array desde donde va a eliminar y cuántos elementos se van a eliminar.
+                                                Si no se especifica el número de elementos a eliminar, se eliminarán
+                                                todos a partir de la posición.
+                                                En caso de querer añadir algún elemento, hay que meterlo también
+                                                en los parámetros*/ 
         }
     }
     this.size = function () {
@@ -69,5 +74,3 @@ console.assert (cat.size() === 2,"No borra el producto 1");
 const array = cat.search (2);
 console.assert (array.length === 1, "Falla el search");
 
-
-console.log(cat);

@@ -6,3 +6,7 @@ function sum (a, b) {
 }
 
 console.log(sum(5,5));
+
+// Funcion flecha
+const sum = (a, b) => a + b;
+
