@@ -74,3 +74,4 @@ console.assert (cat.size() === 2,"No borra el producto 1");
 const array = cat.search (2);
 console.assert (array.length === 1, "Falla el search");
 
+console.log (cat);

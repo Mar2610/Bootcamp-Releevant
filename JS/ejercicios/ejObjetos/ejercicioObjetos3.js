@@ -32,7 +32,7 @@ function bus (capacidad, conductor) { // No tiene parámetro "pasajeros" porque 
     // Método para cambiar de conductor
     this.cambiarConductor = function (conductor) {
         this.conductor.asignarBus (null); // El conductor actual(this.conductor) se queda sin bus (null)
-        this.conductor = conductor; // Se actualiza el conductor al que se pasa como propiedad
+        this.conductor = conductor; // Se actualiza el conductor al que se pasa como parámetro
         this.conductor.asignarBus(this); // Al nuevo conductor(this.conductor) se le asigna el bus actual (this)
 
     }
