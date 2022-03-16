@@ -8,16 +8,22 @@ function Animal (animal, patas) {
     this.patas = patas;
     this.unidades = Math.floor(Math.random()*100)+1;
 }
-
 function Granja (animal) {
     this.lista = [];
     this.add = function (animal) {
         this.lista.push(animal)
     }
-    this.calculoPatas = function () {
+    this.list = function () {
         this.lista.forEach((item) => {
             console.log(`El animal es ${item.animal} y hay ${item.unidades}. Las patas son ${item.unidades*item.patas}`)
         });
+    }
+    this.calculoPatas = function () {
+        let suma = 0;
+        for(let i = 0; i<this.lista.length; i++) {
+            suma += this.lista[i].unidades * this.lista[i].patas;
+        }
+        return suma;
     }
 }
 
@@ -32,4 +38,6 @@ granja.add(new Animal("caballo", 4));
 
 console.log(granja);
 
-granja.calculoPatas();
+granja.list();
+
+console.log(`El total de patas en la granja es ${granja.calculoPatas()}`);
