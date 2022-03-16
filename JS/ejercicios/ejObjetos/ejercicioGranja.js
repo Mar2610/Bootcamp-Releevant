@@ -14,10 +14,7 @@ function Granja (animal) {
     this.add = function (animal) {
         this.lista.push(animal)
     }
-    this.calculoPatas = function (array) {
-        return this.lista.reduce ((total,item)=>total+item.unidades*item.patas);
-    }
-    this.list = function () {
+    this.calculoPatas = function () {
         this.lista.forEach((item) => {
             console.log(`El animal es ${item.animal} y hay ${item.unidades}. Las patas son ${item.unidades*item.patas}`)
         });
@@ -35,4 +32,4 @@ granja.add(new Animal("caballo", 4));
 
 console.log(granja);
 
-granja.list();
+granja.calculoPatas();
