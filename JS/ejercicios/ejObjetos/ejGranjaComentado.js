@@ -18,7 +18,7 @@ function Granja (animal) {
         this.lista.forEach((item) => {
             console.log(`El animal es ${item.animal} y hay ${item.unidades}. Las patas son ${item.unidades*item.patas}`)
         });
-        console.log ('Total:',this.calculoPatas()); //-> te faltaba esta línea
+        console.log ('Total:',this.calculoPatas()); 
     }
 }
 const granja = new Granja();
