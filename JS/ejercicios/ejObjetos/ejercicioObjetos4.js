@@ -25,26 +25,30 @@ función que devuelva un producto a partir de su código.*/
 /*2 funciones constructoras: producto(codigo, descripcion, precio) y catalogo con un array
 de producto y 2 funciones: add, delete y search*/
 
-function Producto (codigo, descripcion, precio) {
-    this.codigo = codigo;
-    this.descripcion = descripcion;
-    this.precio = precio;
+class Producto {
+    constructor (codigo, descripcion, precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.precio = precio;
+    }
 }
 
-function Catalogo (producto) {
-    this.lista = [];
-    this.search = function (codigo) {
+class Catalogo {
+    constructor (producto) {
+        this.lista = [];
+    }
+    search (codigo) {
         return this.lista.filter ((item) => item.codigo === codigo); /* El método filter (bucle) busca un valor en el array
                                                                         que cumpla la condición de la función flecha 
                                                                         que se le atribuye (CALLBACK)*/
     }
-    this.add = function (producto) {
+    add (producto) {
         const busqueda = this.search(producto.codigo);
         if (busqueda.length === 0) {
             this.lista.push (producto);
         }
     }
-    this.delete = function (codigo) {
+    delete (codigo) {
         const posicion = this.lista.findIndex ((item) => item.codigo === codigo);
         if (posicion >= 0) {
             this.lista.splice (posicion,1); /* Los parámetros que hay que darle a .splice son la posicion del
@@ -55,7 +59,7 @@ function Catalogo (producto) {
                                                 en los parámetros*/ 
         }
     }
-    this.size = function () {
+    size () {
         return this.lista.length;
     }
 }
