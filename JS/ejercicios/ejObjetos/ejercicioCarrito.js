@@ -11,7 +11,7 @@ código de producto existe en el catálogo.
 Validar que el código de producto existe en el carrito. 
 • update: actualizar la cantidad de un producto del carrito a un valor dado. Es decir, la 
 cantidad especificada sustituirá la existente en el carrito para ese producto. 
-• up: aumentar en una unidad la cantidad de un producto en el carrito. 
+• up: aumentar en una unidad la cantidad de un producto en el carrito.
 • down: disminuir en una unidad la cantidad de un producto en el carrito. Validar que la 
 cantidad no resulte negativa. Si es cero se eliminará el producto del carrito. 
 • items: calcular el número de productos diferentes del carrito. 
@@ -25,25 +25,27 @@ función que devuelva un producto a partir de su código.*/
 class Carrito {
     constructor (catalogo) {
         this.carrito = [];
-        this.catalogo = catalogo.lista;
-        this.cantidad = new Map();
+        this.catalogo = catalogo;
     }
 
     empty () {
         this.carrito.splice(0, this.carrito.length);
     }
 
-    search (codigo) {
-        return this.carrito.filter ((item) => item.codigo === codigo); 
+    search (producto) {
+        const array = this.carrito.filter ((item) => item.producto === producto);
+        return (array.length>0) ? array[0] : undefined;
     }
 
-    add (codigo, cantidad) { //NO PONE PEGAS AL AÑADIR PRODUCTO QUE NO EXISTE EN CATALOGO. REVISAR
-        let producto = this.catalogo.find ((p) => p.codigo === codigo);
-        if(producto !== null) {
-            this.cantidad.set(codigo, cantidad);
-            this.carrito.push(producto);
-            console.log(this.carrito);
-            console.log(this.cantidad);
+    add (id) {
+        const producto = this.catalogo.getById(id);
+        if(producto) {
+            const item = this.search(producto);
+            if(item) {
+                item.cantidad++;
+            } else {
+                this.carrito.push(new Pedido(producto,1));
+            }
         }
     }
 
@@ -54,33 +56,16 @@ class Carrito {
         }
     }
 
-    update () {
-
-    }
-
-    up () {
-
-    }
-
-    down () {
-
-    }
-
-    items () {
-
-    }
-
     total () {
-        return this.carrito.reduce ((total,item)=>total+item.precio,0);
+        return this.carrito.reduce ((total,item)=>total+item.precio*item.cantidad,0);
     }
 
     list () {
         this.carrito.forEach((item) => {
-            console.log(`Codigo: ${item.codigo}. Descripcion: ${item.descripcion}. Precio: ${item.precio}`);
+            console.log(`Codigo: ${item.codigo}. Descripcion: ${item.descripcion}. Precio: ${item.precio}. Cantidad: ${item.cantidad}`);
         });
         console.log(`El total de la factura es: ${this.total()}`);
     }
-
 }
 
 class Producto {
@@ -92,34 +77,42 @@ class Producto {
 }
 
 class Catalogo {
-    constructor (producto) {
+    constructor () {
         this.lista = [];
     }
     add (producto) {
         this.lista.push(producto);
     }
+
+    getById (id) {
+        const array = this.lista.filter ((item) => item.codigo === id);
+        return (array.length>0) ? array[0] : undefined;
+    }
+    static factory () {
+        const cat = new Catalogo();
+        cat.add(new Producto(1, "Camisa", 10));
+        cat.add(new Producto(2, "Pantalon", 20));
+        cat.add(new Producto(3, "Abrigo", 40));
+        return cat;
+    }
+}
+
+class Pedido {
+    constructor (producto, cantidad) {
+        this.producto = producto;
+        this.cantidad = cantidad;
+    }
 }
 
 
+const carro = new Carrito(Catalogo.factory());
 
+carro.add(2);
+carro.add(2);
 
-const cat = new Catalogo();
-
-cat.add(new Producto(1, "Camisa", 10));
-cat.add(new Producto(2, "Pantalon", 20));
-cat.add(new Producto(3, "Abrigo", 40));
-
-const carro = new Carrito(cat);
-
-carro.add(2, 2); //Funciona
-carro.add(3, 5);
-carro.add(1,6);
-
-// carro.delete(1); //Funciona
-
-// carro.empty(); //Funciona
-
-console.log(cat);
 console.log(carro);
+// const pedido1 = new Pedido("Producto", 3);
 
-// console.log(carro.list()); //Revisar
+// console.log(cat);
+// console.log(carro);
+// console.log(pedido1);
