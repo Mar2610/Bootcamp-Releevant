@@ -33,8 +33,7 @@ class Carrito {
     }
 
     search (producto) {
-        const array = this.carrito.filter ((item) => item.producto === producto);
-        return (array.length>0) ? array[0] : undefined;
+        return this.carrito.find ((item) => item.producto.codigo === producto.codigo);
     }
 
     add (id) {
@@ -49,7 +48,7 @@ class Carrito {
         }
     }
 
-    update(id,cantidad){
+    update (id,cantidad){
         const producto = this.catalogo.getById(id);
         if(producto){
           const item  = this.search(producto);
@@ -59,11 +58,38 @@ class Carrito {
         }
       }
 
-    delete (codigo) {
-        const posicion = this.carrito.findIndex ((item) => item.codigo === codigo);
+    delete (id) {
+        const posicion = this.carrito.findIndex ((item) => item.producto.codigo === id);
         if (posicion >= 0) {
             this.carrito.splice (posicion,1);
         }
+    }
+
+    up (id) {
+        const producto = this.catalogo.getById(id);
+        if(producto){
+          const item  = this.search(producto);
+          if(item){
+            item.cantidad++;
+          }
+        }
+    }
+
+    down (id) {
+        const producto = this.catalogo.getById(id);
+        if(producto){
+          const item  = this.search(producto);
+          if(item){
+            item.cantidad--;
+            if(item.cantidad <= 0) {
+                return this.delete(id);
+            }
+          }
+        }
+    }
+
+    items () {
+        
     }
 
     total () {
@@ -96,8 +122,7 @@ class Catalogo {
     }
 
     getById (id) {
-        const array = this.lista.filter ((item) => item.codigo === id);
-        return (array.length>0) ? array[0] : null;
+        return this.lista.find ((item) => item.codigo === id);
     }
     static factory () {
         const cat = new Catalogo();
@@ -122,6 +147,8 @@ carro.add(2);
 carro.add(2);
 carro.add(1);
 carro.update(2,5);
-carro.update(1,3);
 console.log(carro.carrito);
+carro.up(2);
+carro.down(1);
+carro.down(1);
 carro.list();
