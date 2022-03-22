@@ -49,6 +49,16 @@ class Carrito {
         }
     }
 
+    update(id,cantidad){
+        const producto = this.catalogo.getById(id);
+        if(producto){
+          const item  = this.search(producto);
+          if(item){
+            item.cantidad += cantidad
+          }
+        }
+      }
+
     delete (codigo) {
         const posicion = this.carrito.findIndex ((item) => item.codigo === codigo);
         if (posicion >= 0) {
@@ -57,12 +67,13 @@ class Carrito {
     }
 
     total () {
-        return this.carrito.reduce ((total,item)=>total+item.precio*item.cantidad,0);
+        return this.carrito.reduce ((total,item)=>total+item.producto.precio*item.cantidad,0);
     }
 
     list () {
         this.carrito.forEach((item) => {
-            console.log(`Codigo: ${item.codigo}. Descripcion: ${item.descripcion}. Precio: ${item.precio}. Cantidad: ${item.cantidad}`);
+            console.log(`Codigo: ${item.producto.codigo}. Descripcion: ${item.producto.descripcion}. 
+            Precio: ${item.producto.precio}. Cantidad: ${item.cantidad}. Importe: ${item.producto.precio*item.cantidad}`);
         });
         console.log(`El total de la factura es: ${this.total()}`);
     }
@@ -86,7 +97,7 @@ class Catalogo {
 
     getById (id) {
         const array = this.lista.filter ((item) => item.codigo === id);
-        return (array.length>0) ? array[0] : undefined;
+        return (array.length>0) ? array[0] : null;
     }
     static factory () {
         const cat = new Catalogo();
@@ -109,10 +120,8 @@ const carro = new Carrito(Catalogo.factory());
 
 carro.add(2);
 carro.add(2);
-
-console.log(carro);
-// const pedido1 = new Pedido("Producto", 3);
-
-// console.log(cat);
-// console.log(carro);
-// console.log(pedido1);
+carro.add(1);
+carro.update(2,5);
+carro.update(1,3);
+console.log(carro.carrito);
+carro.list();
