@@ -88,10 +88,6 @@ class Carrito {
         }
     }
 
-    items () {
-        
-    }
-
     total () {
         return this.carrito.reduce ((total,item)=>total+item.producto.precio*item.cantidad,0);
     }
