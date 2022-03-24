@@ -8,6 +8,7 @@ class ItemCart {
         this.units = units;
     }
     getAmount() {
+        return this.units*this.product.price
     }
 }
 /**
@@ -29,12 +30,18 @@ class Catalog {
         this.list = [];
     }
     add(product) {
+        if(!this.existProduct(product)){
+            this.list.push(product);
+        }
     }
     searchProduct(product) {
+        return this.list.filter((item) => item.id == product.id || item.name == product.name);
     }
     searchProductById(id) {
+        return this.list.find((item) => item.id == id);
     }
     existProduct(product) {
+        return this.list.some ((item) => item.id == product.id );
     }
     getList() {
         return this.list;
@@ -64,6 +71,15 @@ class Cart {
      * @returns this. el carrito 
      */
     add(id,units=1) {
+        const product = this.catalog.searchProductById(id);
+        if(product){
+            const item = this.searchItem(product);
+            if(item){
+                item.units += units;
+            } else {
+                this.cart.push(new ItemCart(product,units));
+            }
+        }
         return this;
     }
     /**
@@ -73,6 +89,13 @@ class Cart {
      * @returns this. el carrito
      */
     delete(id) {
+        const product = this.catalog.searchProductById (id);
+        if (product){
+            const position = this.cart.findIndex ((item)=> item.product.id== id);
+            if (position >= 0){
+                this.cart.splice (position,1);
+            } 
+        }
         return this;
     }
     /**
@@ -89,12 +112,14 @@ class Cart {
      * @returns el itemcart del producto o undefined
      */
     searchItem(product) {
+        return this.cart.find((item) => item.product.id == product.id);
     }
     /**
      * Calcula el total de elementos del carrito
      * @returns total
      */
     getTotal() {
+        return this.cart.reduce((total,item)=> total+item.getAmount(),0);
     }
     /**
     * Carga una array de itemcart en el carrito
@@ -125,8 +150,8 @@ class Cart {
  *
  */
 export default class ModelCart {
-    constructor() {
-        this.cart = new Cart(Catalog.factory());
+    constructor(catalog) {
+        this.cart = new Cart(catalog || Catalog.factory());
         this.cart.loadItems(JSON.parse(localStorage.getItem(Configuration.LS_NAME)) || []);
     }
     add(id) {

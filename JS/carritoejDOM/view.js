@@ -5,16 +5,14 @@ import { Configuration } from "../configuration.js";
    *
    */
  class View {
-    createElement(tag, class1, class2, class3) {
+    createElement(tag, [classes]) {
       const element = document.createElement(tag)
-      if (class1) {
-        element.classList.add(class1)
-      }
-      if (class2) {
-        element.classList.add(class2)
-      }
-      if (class3) {
-        element.classList.add(class3)
+      if (classes instanceof Array) {
+        for (let item of classes) {
+          element.classList.add(item);
+        }
+      } else {
+        element.classList.add(classes);
       }
       return element
     }
