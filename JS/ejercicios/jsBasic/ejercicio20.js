@@ -9,15 +9,15 @@ const prompt = require("prompt-sync")();
 const clave = "eureka";
 let enter;
 let indice = 0;
-while ((enter !== clave) && (indice < 2)) {
+while ((enter !== clave) && (indice < 3)) {
     enter = (prompt("Introducir la contraseña: "));
     indice++;
 } 
 
-if (enter===clave) {
-    console.log("OK")
-} else {
-    console.log("3 intentos out")
-}
+(enter===clave) ? console.log(`Lo conseguiste!`) : console.log(`Has agotado los intentos`);
 
-
+// if (enter===clave) {
+//     console.log("OK")
+// } else {
+//     console.log("3 intentos out")
+// }
