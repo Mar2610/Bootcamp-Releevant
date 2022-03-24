@@ -24,5 +24,4 @@ function comprobar () {
         count--;
         alert(`Fallaste. Te quedan ${count} intentos.`)
     }
-    // (enter===clave) ? alert(`Lo conseguiste!`) : alert(`Has agotado los intentos`);
 }
