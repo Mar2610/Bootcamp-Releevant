@@ -38,7 +38,7 @@ export default class ViewCart extends View {
    * @param {*} model: modelo de datos que contiene el catálogo
    */
   displayCatalog(model) {
-    
+    model.cart.catalog.getList().
   }
   /**
    * Muestra un producto
