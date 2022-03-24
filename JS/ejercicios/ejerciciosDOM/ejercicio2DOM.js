@@ -14,7 +14,6 @@ function comprobar () {
     let enter = document.getElementById('enter').value;
     let indice = 0;
     while ((enter !== clave) && (indice < 3)) {
-        alert("Fallaste");
         indice++;
     }
     (enter===clave) ? alert(`Lo conseguiste!`) : alert(`Has agotado los intentos`);
