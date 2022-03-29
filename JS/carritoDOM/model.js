@@ -8,7 +8,7 @@ class ItemCart {
         this.units = units;
     }
     getAmount() {
-        return this.units*this.product.price
+        return this.product.price * this.units;
     }
 }
 /**
@@ -30,18 +30,18 @@ class Catalog {
         this.list = [];
     }
     add(product) {
-        if(!this.existProduct(product)){
+        if (!this.existProduct(product)) {
             this.list.push(product);
         }
     }
     searchProduct(product) {
-        return this.list.filter((item) => item.id == product.id || item.name == product.name);
+        return this.list.filter(item => item.id == product.id || item.name == product.name);
     }
     searchProductById(id) {
-        return this.list.find((item) => item.id == id);
+        return this.list.find (item => item.id == id);
     }
     existProduct(product) {
-        return this.list.some ((item) => item.id == product.id );
+        return this.list.some(item => item.id == product.id || item.name == product.name);
     }
     getList() {
         return this.list;
@@ -72,12 +72,12 @@ class Cart {
      */
     add(id,units=1) {
         const product = this.catalog.searchProductById(id);
-        if(product){
+        if (product) {
             const item = this.searchItem(product);
-            if(item){
-                item.units += units;
+            if (item) {
+                item.units+=units;
             } else {
-                this.cart.push(new ItemCart(product,units));
+                this.cart.push(new ItemCart(product, units));
             }
         }
         return this;
@@ -89,12 +89,12 @@ class Cart {
      * @returns this. el carrito
      */
     delete(id) {
-        const product = this.catalog.searchProductById (id);
-        if (product){
-            const position = this.cart.findIndex ((item)=> item.product.id== id);
-            if (position >= 0){
-                this.cart.splice (position,1);
-            } 
+        const product = this.catalog.searchProductById(id);
+        if (product) {
+            const position = this.cart.findIndex(item => item.product.id == product.id);
+            if (position >= 0) {
+                this.cart.splice(position, 1);
+            }
         }
         return this;
     }
@@ -112,14 +112,14 @@ class Cart {
      * @returns el itemcart del producto o undefined
      */
     searchItem(product) {
-        return this.cart.find((item) => item.product.id == product.id);
+        return this.cart.find(item => item.product.id == product.id);
     }
     /**
      * Calcula el total de elementos del carrito
      * @returns total
      */
     getTotal() {
-        return this.cart.reduce((total,item)=> total+item.getAmount(),0);
+        return this.cart.reduce((total, item) => total + item.getAmount(), 0).toFixed(2);
     }
     /**
     * Carga una array de itemcart en el carrito
@@ -150,8 +150,8 @@ class Cart {
  *
  */
 export default class ModelCart {
-    constructor(catalog) {
-        this.cart = new Cart(catalog || Catalog.factory());
+    constructor() {
+        this.cart = new Cart(Catalog.factory());
         this.cart.loadItems(JSON.parse(localStorage.getItem(Configuration.LS_NAME)) || []);
     }
     add(id) {
@@ -172,24 +172,24 @@ export default class ModelCart {
     }
 
     _commit() {
-        this.onModelChanged(this);
+        this.onModelChanged(this.cart);
         localStorage.setItem(Configuration.LS_NAME, JSON.stringify(this.cart.getItems()));
     }
 
 }
 
-// function testCart() {
-//     const carrito = new Cart(Catalog.factory);
-//     carrito.add(1);
-//     carrito.add(1);
-//     console.assert(carrito.getItems().length === 1,'No se ha añadido el segundo código 1');
-//     carrito.add(2);
-//     console.assert(carrito.getItems().length === 2,'No se ha añadido el código 2');
-//     carrito.delete(1);
-//     console.assert(carrito.getItems().length === 1,'No se ha borrado el código 1');
-//     carrito.empty();
-//     console.assert(carrito.getItems().length === 0,'No se ha vaciado el carrito');
+function testCart() {
+    const carrito = new Cart(Catalog.factory);
+    carrito.add(1);
+    carrito.add(1);
+    console.assert(carrito.getItems().length === 1,'No se ha añadido el segundo código 1');
+    carrito.add(2);
+    console.assert(carrito.getItems().length === 2,'No se ha añadido el código 2');
+    carrito.delete(1);
+    console.assert(carrito.getItems().length === 1,'No se ha borrado el código 1');
+    carrito.empty();
+    console.assert(carrito.getItems().length === 0,'No se ha vaciado el carrito');
 
-// }
+}
 
 // testCart();

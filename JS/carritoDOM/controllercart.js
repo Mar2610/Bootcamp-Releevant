@@ -18,13 +18,13 @@ export default class ControllerCart {
         this.view.bindEmpty(this.handleEmpty);
 
         // Mostar el catálogo
-        this.view.displayCatalog(this.model);
+        this.view.displayCatalog(this.model.cart.catalog.getList());
         // Mostrar el contenido del carrito
-        this.view.displayCart(this.model);
+        this.view.displayCart(this.model.cart);
     }
 
-    onModelChanged = model => {
-        this.view.displayCart(model);
+    onModelChanged = cart => {
+        this.view.displayCart(cart);
     }
 
     handleAdd = id => {
