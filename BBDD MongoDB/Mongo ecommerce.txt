@@ -1,0 +1,454 @@
+{
+	nombre: 'Correa perros',
+	tipo: 'Animales',
+	stock: 10,
+	precio: 23.9,
+	vendedor: {
+		nombre: 'Hogarmania',
+		direccion: 'C/ Apolo 13',
+		correo: 'ventas@hogarmania.com'
+	},
+	rating: 4
+},
+
+{
+	nombre: 'Lampara de pie',
+	tipo: 'Hogar',
+	stock: 5,
+	precio: 33.5,
+	vendedor: {
+		nombre: 'GaminIn',
+		direccion: 'C/ Barranco 13',
+		correo: 'contacto@gaminin.es'
+	},
+	rating: 4
+},
+
+{
+	nombre: 'Mesa',
+	tipo: 'Hogar',
+	stock: 8,
+	precio: 78.9,
+	vendedor: {
+		nombe: 'GaminIn',
+		direccion: 'C/ Barranco 13',
+		correo: 'contacto@gaminin.es'
+	},
+	rating: 3
+},
+
+{
+	nombre: 'Silla Gaming',
+	tipo: 'Gaming',
+	stock: 3,
+	precio: 45,
+	vendedor: {
+		nombre: 'Electrol',
+		direccion: 'C/ Malaga 44',
+		correo: 'info@electrol.com'
+	},
+	rating: 4
+},
+
+{
+	nombre: 'Televisor',
+	tipo: 'Entretenimiento',
+	stock: 6,
+	precio: 999,
+	vendedor: {
+		nombre: 'Electrol',
+		direccion: 'C/ Malaga 44',
+		correo: 'info@electrol.com'
+	},
+	rating: 2
+}
+
+
+Usuarios:
+{
+	nombre: 'Jose',
+	apellidos: 'Alcala',
+	telefono: '1122334455',
+	correo: 'jose@gmail.com',
+	password: '1234',
+	direccion: 'C/ Trebujena 22',
+	tipoPago: 'Paypal'
+},
+
+{
+	nombre: 'Maria',
+	apellidos: 'Perez',
+	telefono: '3455678',
+	correo: 'mp@hotmail.es',
+	password: '1234',
+	direccion: 'C/ Isla Padre 12',
+	tipoPago: 'Bizum'
+},
+
+{
+	nombre: 'Pedro',
+	apellidos: 'Lopez',
+	telefono: '34532323',
+	correo: 'pedro@pedro.es',
+	password: '5678',
+	direccion: 'C/ Pedro P',
+	tipoPag: 'Tarjeta'
+},
+
+{
+	nombre: 'Claudia',
+	apellidos: 'Semper',
+	telefono: '456543',
+	correo: 'clau@clau.com',
+	password: '5678',
+	direccion: 'C/ Parlamento 76',
+	tipoPago: 'Paypal'
+}
+
+
+Vendedores:
+ {
+	nombre: 'Hogarmania',
+	direccion: 'C/ Apolo 13',
+	correo: 'ventas@hogarmania.com'
+},
+
+{
+	nombre: 'GaminIn',
+	direccion: 'C/ Barranco 13',
+	correo: 'contacto@gaminin.es'
+},
+
+{
+	nombre: 'Electrol',
+	direccion: 'C/ Malaga 44',
+	correo: 'info@electrol.com'
+}
+
+
+Ventas: 
+{
+    producto: {
+        nombre: 'Correa perros',
+        tipo: 'Animales',
+        stock: 10,
+        precio: 23.9,
+        vendedor: {
+            nombre: 'Hogarmania',
+            direccion: 'C/ Apolo 13',
+            correo: 'ventas@hogarmania.com'
+        },
+        rating: 4
+    },
+    cantidad: 2,
+    precio: 33.9,
+    usuario: {
+        nombre: 'Jose',
+        apellidos: 'Alcala',
+        telefono: '1122334455',
+        correo: 'jose@gmail.com',
+        password: '1234',
+        direccion: 'C/ Trebujena 22',
+        tipoPago: 'Paypal'
+    }
+},
+{
+    producto: {
+        nombre: 'Correa perros',
+        tipo: 'Animales',
+        stock: 10,
+        precio: 23.9,
+        vendedor: {
+            nombre: 'Hogarmania',
+            direccion: 'C/ Apolo 13',
+            correo: 'ventas@hogarmania.com'
+        },
+        rating: 4
+    },
+    cantidad: 2,
+    precio: 33.9,
+    usuario: {
+        nombre: 'Jose',
+        apellidos: 'Alcala',
+        telefono: '1122334455',
+        correo: 'jose@gmail.com',
+        password: '1234',
+        direccion: 'C/ Trebujena 22',
+        tipoPago: 'Paypal'
+    }
+},
+{
+    producto: {
+        nombre: 'Correa perros',
+        tipo: 'Animales',
+        stock: 10,
+        precio: 23.9,
+        vendedor: {
+            nombre: 'Hogarmania',
+            direccion: 'C/ Apolo 13',
+            correo: 'ventas@hogarmania.com'
+        },
+        rating: 4
+    },
+    cantidad: 1,
+    precio: 35.9,
+    usuario: {
+        nombre: 'Pedro',
+        apellidos: 'Lopez',
+        telefono: '34532323',
+        correo: 'pedro@pedro.es',
+        password: '5678',
+        direccion: 'C/ Pedro P',
+        tipoPag: 'Tarjeta'
+    }
+},
+{
+    producto: {
+        nombre: 'Lampara de pie',
+        tipo: 'Hogar',
+        stock: 5,
+        precio: 33.5,
+        vendedor: {
+            nombre: 'GaminIn',
+            direccion: 'C/ Barranco 13',
+            correo: 'contacto@gaminin.es'
+        },
+        rating: 4
+    },
+    cantidad: 1,
+    precio: 45,
+    usuario: {
+        nombre: 'Maria',
+        apellidos: 'Perez',
+        telefono: '3455678',
+        correo: 'mp@hotmail.es',
+        password: '1234',
+        direccion: 'C/ Isla Padre 12',
+        tipoPago: 'Bizum'
+    }
+},
+{
+    producto: {
+        nombre: 'Lampara de pie',
+        tipo: 'Hogar',
+        stock: 5,
+        precio: 33.5,
+        vendedor: {
+            nombre: 'GaminIn',
+            direccion: 'C/ Barranco 13',
+            correo: 'contacto@gaminin.es'
+        },
+        rating: 4
+    },
+    cantidad: 4,
+    precio: 39.9,
+    usuario: {
+        nombre: 'Jose',
+        apellidos: 'Alcala',
+        telefono: '1122334455',
+        correo: 'jose@gmail.com',
+        password: '1234',
+        direccion: 'C/ Trebujena 22',
+        tipoPago: 'Paypal'
+    }
+},
+{
+    producto: {
+    nombre: 'Lampara de pie',
+        tipo: 'Hogar',
+        stock: 5,
+        precio: 33.5,
+        vendedor: {
+            nombre: 'GaminIn',
+            direccion: 'C/ Barranco 13',
+            correo: 'contacto@gaminin.es'
+        },
+        rating: 4
+    },
+    cantidad: 2,
+    precio: 41.2,
+    usuario: {
+        nombre: 'Claudia',
+        apellidos: 'Semper',
+        telefono: '456543',
+        correo: 'clau@clau.com',
+        password: '5678',
+        direccion: 'C/ Parlamento 76',
+        tipoPago: 'Paypal'
+    }
+},
+{
+    producto: {
+        nombre: 'Mesa',
+        tipo: 'Hogar',
+        stock: 8,
+        precio: 78.9,
+        vendedor: {
+            nombe: 'GaminIn',
+            direccion: 'C/ Barranco 13',
+            correo: 'contacto@gaminin.es'
+        },
+        rating: 3
+    },
+    cantidad: 3,
+    precio: 75,
+    usuario: {
+        nombre: 'Jose',
+        apellidos: 'Alcala',
+        telefono: '1122334455',
+        correo: 'jose@gmail.com',
+        password: '1234',
+        direccion: 'C/ Trebujena 22',
+        tipoPago: 'Paypal'
+    }
+},
+{
+    producto: {
+        nombre: 'Mesa',
+        tipo: 'Hogar',
+        stock: 8,
+        precio: 78.9,
+        vendedor: {
+            nombe: 'GaminIn',
+            direccion: 'C/ Barranco 13',
+            correo: 'contacto@gaminin.es'
+        },
+        rating: 3
+    },
+    cantidad: 2,
+    precio: 70,
+    usuario: {
+        nombre: 'Maria',
+        apellidos: 'Perez',
+        telefono: '3455678',
+        correo: 'mp@hotmail.es',
+        password: '1234',
+        direccion: 'C/ Isla Padre 12',
+        tipoPago: 'Bizum'
+    }
+},
+{
+    producto: {
+        nombre: 'Silla Gaming',
+        tipo: 'Gaming',
+        stock: 3,
+        precio: 45,
+        vendedor: {
+            nombre: 'Electrol',
+            direccion: 'C/ Malaga 44',
+            correo: 'info@electrol.com'
+        },
+        rating: 4
+    },
+    cantidad: 10,
+    precio: 55,
+    usuario: {
+        nombre: 'Claudia',
+        apellidos: 'Semper',
+        telefono: '456543',
+        correo: 'clau@clau.com',
+        password: '5678',
+        direccion: 'C/ Parlamento 76',
+        tipoPago: 'Paypal'
+    }
+},
+{
+    producto: {
+        nombre: 'Silla Gaming',
+        tipo: 'Gaming',
+        stock: 3,
+        precio: 45,
+        vendedor: {
+            nombre: 'Electrol',
+            direccion: 'C/ Malaga 44',
+            correo: 'info@electrol.com'
+        },
+        rating: 4
+    },
+    cantidad: 2,
+    precio: 61.1,
+    usuario: {
+        nombre: 'Maria',
+        apellidos: 'Perez',
+        telefono: '3455678',
+        correo: 'mp@hotmail.es',
+        password: '1234',
+        direccion: 'C/ Isla Padre 12',
+        tipoPago: 'Bizum'
+    }
+},
+{
+    producto: {
+        nombre: 'Silla Gaming',
+        tipo: 'Gaming',
+        stock: 3,
+        precio: 45,
+        vendedor: {
+            nombre: 'Electrol',
+            direccion: 'C/ Malaga 44',
+            correo: 'info@electrol.com'
+        },
+        rating: 4
+    },
+    cantidad: 3,
+    precio: 49.95,
+    usuario: {
+        nombre: 'Jose',
+        apellidos: 'Alcala',
+        telefono: '1122334455',
+        correo: 'jose@gmail.com',
+        password: '1234',
+        direccion: 'C/ Trebujena 22',
+        tipoPago: 'Paypal'
+    }
+},
+{
+    producto: {
+        nombre: 'Televisor',
+        tipo: 'Entretenimiento',
+        stock: 6,
+        precio: 999,
+        vendedor: {
+            nombre: 'Electrol',
+            direccion: 'C/ Malaga 44',
+            correo: 'info@electrol.com'
+        },
+        rating: 2
+    },
+    cantidad: 1,
+    precio: 890,
+    usuario: {
+        nombre: 'Pedro',
+        apellidos: 'Lopez',
+        telefono: '34532323',
+        correo: 'pedro@pedro.es',
+        password: '5678',
+        direccion: 'C/ Pedro P',
+        tipoPag: 'Tarjeta'
+    }
+},
+{
+    producto: {
+        nombre: 'Televisor',
+        tipo: 'Entretenimiento',
+        stock: 6,
+        precio: 999,
+        vendedor: {
+            nombre: 'Electrol',
+            direccion: 'C/ Malaga 44',
+            correo: 'info@electrol.com'
+        },
+        rating: 2
+    },
+    cantidad: 2,
+    precio: 950,
+    usuario: {
+        nombre: 'Claudia',
+        apellidos: 'Semper',
+        telefono: '456543',
+        correo: 'clau@clau.com',
+        password: '5678',
+        direccion: 'C/ Parlamento 76',
+        tipoPago: 'Paypal'
+    }
+}
