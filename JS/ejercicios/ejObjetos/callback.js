@@ -21,7 +21,7 @@ Array.prototype.encuentraIndice = function (callback) {
 
 function callback(item) {
   return item > "i";
-}
+};
 
 const miarray = ["a", "b", "x", "x", "m", "h"];
 console.log(miarray.filtro(callback));
