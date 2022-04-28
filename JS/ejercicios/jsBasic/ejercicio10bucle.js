@@ -12,4 +12,4 @@ while (indice < category){
 }
 if (indice === category) {
     console.log("Nuevo sueldo", salary*incremento[indice-1]);
-}
+}   
