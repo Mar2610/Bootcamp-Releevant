@@ -44,16 +44,29 @@ app.post("/newNote", (request, response) => {
   response.json(request.body);
 });
 
-const notas = [{id: 1, "autor": "Paco", "texto": "Tomate", "receptor": "Yo misma"},
-{id: 2, "autor": "Marta", "texto": "Pájaro", "receptor": "Yo misma"},
-{id: 3, "autor": "Lucia", "texto": "Perro", "receptor": "Yo misma"},
-{id: 4, "autor": "Adri", "texto": "Gato", "receptor": "Yo misma"},
-{id: 5, "autor": "Miguel", "texto": "Conejo", "receptor": "Yo misma"}];
+const notas = [{id: 1, autor: "Paco", texto: "Tomate", receptor: "Yo misma"},
+{id: 2, autor: "Marta", texto: "Pájaro", receptor: "Yo misma"},
+{id: 3, autor: "Lucia", texto: "Perro", receptor: "Yo misma"},
+{id: 4, autor: "Adri", texto: "Gato", receptor: "Yo misma"},
+{id: 5, autor: "Miguel", texto: "Conejo", receptor: "Yo misma"}];
 
 app.get("/api/notas", (request, response) => { 
     let id = notas.find(nota => nota.id === 3);
     console.log(id);
     response.json(id);
+  });
+
+app.put("/api/note", (request, response) => { 
+    console.log(request.body);
+    response.json(request.body);
+  });
+
+  app.get("/nota", (request, response) => { 
+    let myBody = request.body;
+    let nota = notas.find(n => n.id == myBody.id);
+    nota.texto = myBody.texto;
+    console.log(notas);
+    response.json(notas);
   });
 
 const PORT = 3001;
