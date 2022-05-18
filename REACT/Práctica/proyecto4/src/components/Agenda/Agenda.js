@@ -5,6 +5,7 @@ export default function Agenda({contactos}) {
         <>
         {contactos.map((item) => {
             return (
+              <>
               <ul>
                 <li>{item.nombre}</li>
                 <li>{item.apellidos}</li>
@@ -13,8 +14,12 @@ export default function Agenda({contactos}) {
                 <li>{item.codigoPostal}</li>
                 <li>{item.telefono}</li>
               </ul>
+              </>
             );
           })}
         </>
     )
 }
+
+// Ctrl + D para borrar todos los item a la vez
+// Ctrl + F para modificar todos los item

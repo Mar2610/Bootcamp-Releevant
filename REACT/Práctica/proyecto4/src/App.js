@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import Agenda from './components/Agenda';
+import Formulario from './components/Formulario';
 
 const contactos = [
   {
@@ -33,7 +33,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Agenda/>
+        <Agenda contactos={contactos}/>
+        <Formulario/>
       </header>
     </div>
   );
