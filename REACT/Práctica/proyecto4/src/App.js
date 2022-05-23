@@ -1,9 +1,11 @@
 import './App.css';
 import Agenda from './components/Agenda';
 import Formulario from './components/Formulario';
+import { useState } from "react";
 
 const contactos = [
   {
+    id: 1,
     nombre: 'Marta',
     apellidos: 'de Haro',
     direccion: 'ksdbkj',
@@ -12,6 +14,7 @@ const contactos = [
     telefono: 666666666
   },
   {
+    id: 2,
     nombre: 'Elena',
     apellidos: 'Ramirez',
     direccion: 'ksdbkj',
@@ -20,6 +23,7 @@ const contactos = [
     telefono: 666666666
   },
   {
+    id: 3,
     nombre: 'Noemi',
     apellidos: 'Rodriguez',
     direccion: 'ksdbkj',
@@ -30,11 +34,13 @@ const contactos = [
 ];
 
 function App() {
+  const [users, setUsers] = useState(contactos);
+
   return (
     <div className="App">
       <header className="App-header">
-        <Agenda contactos={contactos}/>
-        <Formulario/>
+        <Agenda contactos={users} setDelete={setUsers}/>
+        <Formulario handleUsers={setUsers}/>
       </header>
     </div>
   );

@@ -31,7 +31,7 @@ export default function App() {
  import "./styles.css";
  
  export default function App() {
-   const [students, setStudents] = useState([]); // Guardar los estudiantes que vayamos añadiendo con el 
+   const [students, setStudents] = useState([]); // Guardar los estudiantes que vayamos añadiendo con el formulario
    const [student, setStudent] = useState(""); // Guarda lo que el usuario escribe en el input
  
    function handleSubmit(event) {
@@ -64,3 +64,8 @@ export default function App() {
    );
  }
  
+
+
+
+
+
