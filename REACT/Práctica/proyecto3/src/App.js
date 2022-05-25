@@ -1,6 +1,5 @@
 import './App.css';
 import Tienda from './components/Tienda';
-import Lista from './components/Lista';
 
 
 const tienda = {

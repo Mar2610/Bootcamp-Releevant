@@ -9,6 +9,23 @@ export default function Formulario({ handleUsers }) {
   const [codigoPostal, setCodigoPostal] = useState("");
   const [telefono, setTelefono] = useState("");
 
+  // const initialContactValue = {
+  //   name: "",
+  //   surname: "",
+  //   address: "",
+  //   city: "",
+  //   phone: "",
+  //   zip: "",
+  // };
+
+  // const [contact, setContact] = useState(initialContactValue);  Esta es la función que reemplaza todos los handle
+  // function handleInputs(event) {
+  //   setContact((contact) => ({
+  //     ...contact,
+  //     [event.target.name]: event.target.value,
+  //   }));
+  // }
+
   function handleName(event) {
     setNombre(event.target.value);
   }
