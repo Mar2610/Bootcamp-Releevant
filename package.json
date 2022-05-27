@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "cucumber": "^6.0.7",
     "cypress": "^9.6.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
