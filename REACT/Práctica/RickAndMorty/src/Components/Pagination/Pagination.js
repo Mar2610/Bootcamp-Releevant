@@ -3,16 +3,14 @@ import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-export default function PaginationControlled(Characters) {
-  const [page, setPage] = React.useState(1);
+export default function PaginationControlled({handlePagination, count, page}) {
   const handleChange = (event, value) => {
-    setPage(value);
+    handlePagination(value);
   };
 
   return (
     <Stack spacing={2} alignItems="center">
-      <Typography>Page: {page}</Typography>
-      <Pagination count={10} page={page} onChange={handleChange} />
+      <Pagination count={count} page={page} onChange={handleChange} />
     </Stack>
   );
 }

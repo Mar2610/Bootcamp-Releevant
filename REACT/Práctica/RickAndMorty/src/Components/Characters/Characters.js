@@ -1,7 +1,10 @@
-export default function Characters({ character }) {
-  console.log(character);
+export default function Characters({ character, setDelete }) {
+
+  function handleDelete(idDelete) {
+    setDelete(character.filter((character) => character.name!==idDelete));
+
+  }
   return (
-    <>
       <div className="container">
         <div className="row row-cols-1 row-cols-md-3 g-5">
           {character.map((char) => (
@@ -11,12 +14,11 @@ export default function Characters({ character }) {
                 <h5 className="card-title">{char.name}</h5>
                 <p className="card-text">{char.gender}</p>
                 <a className="btn btn-primary m-1">Detalles</a>
-                <a className="btn btn-danger row m-1">Eliminar</a>
+                <a className="btn btn-danger row m-1" onClick={() => handleDelete(char.name)}>Eliminar</a>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </>
   );
 }

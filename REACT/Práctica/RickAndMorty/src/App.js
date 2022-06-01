@@ -2,24 +2,30 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import Characters from "./Components/Characters";
 import Pagination from "./Components/Pagination";
+import Search from "./Components/Search"
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [search, setSearch] = useState('');
 
   useEffect(function () {
     async function fetchApi() {
-      const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`);
+      const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${currentPage}&name=${search}`);
       const json = await response.json();
       setCharacters(json.results);
+      setTotalPages(json.info.pages);
     }
     fetchApi();
-  }, [page]);
+  }, [currentPage, search]);
 
   return (
     <div>
-      <Characters character={characters} />
-      <Pagination />
+      <Search setSearch={setSearch}/>
+      <br/>
+      <Characters character={characters} setDelete={setCharacters}/>
+      <Pagination count={totalPages} page={currentPage} handlePagination={setCurrentPage} />
     </div>
   );
 }
