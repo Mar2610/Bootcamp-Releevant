@@ -3,12 +3,16 @@ import { useState, useEffect } from "react";
 import Characters from "./Components/Characters";
 import Pagination from "./Components/Pagination";
 import Search from "./Components/Search"
+import Switch from "./Components/Switch/Switch";
+import Login from "./Components/Login"
+import {useUserLoginContext} from "./Contexts/LoginContext"
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [search, setSearch] = useState('');
+  const {user} = useUserLoginContext();
 
   useEffect(function () {
     async function fetchApi() {
@@ -21,12 +25,15 @@ function App() {
   }, [currentPage, search]);
 
   return (
-    <div>
+    <>
+    {user ? <div>
       <Search setSearch={setSearch}/>
       <br/>
+      <Switch/>
       <Characters character={characters} setDelete={setCharacters}/>
       <Pagination count={totalPages} page={currentPage} handlePagination={setCurrentPage} />
-    </div>
+    </div> : <Login/>}
+    </>
   );
 }
 
