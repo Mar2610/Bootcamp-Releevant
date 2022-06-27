@@ -1,47 +1,64 @@
 const express = require("express"); // Con require se declara que es necesario la librería express
 const app = express(); // Nuestra aplicación va a usar express y puede acceder a todas las funciones de la librería
 app.use(express.json());
-const mysql = require("mysql");
+// const mysql = require("mysql");
+const cors = require("cors");
+app.use(cors());
+const md5 = require("md5");
+const mysql = require("mysql2/promise");
 
-const connection = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "root",
-  password: "",
-  database: "bbdd_camper",
-  port: 3306,
-});
-
-function conectar() {
-  connection.connect(function (err) {
-    if (err) {
-      return console.error("error: " + err.message);
-    }
-    console.log("Conectado!");
+async function conectar() {
+  return await mysql.createConnection({
+    host: "127.0.0.1",
+    user: "root",
+    password: "",
+    database: "bbdd_camper",
+    port: 3306,
   });
 }
 
-app.get("/user/:username", (request, response) => {
-  conectar();
-  connection.query(
-    `SELECT * FROM users where userName="${request.params.username}"`,
-    (err, rows, fields) => {
-      if (err) throw err;
-      response.json(rows);
-    }
+// function conectar() {
+//   connection.connect(function (err) {
+//     if (err) {
+//       return console.error("error: " + err.message);
+//     }
+//     console.log("Conectado!");
+//   });
+// }
+
+app.post("/login", async (request, response) => {
+  let conection = await conectar();
+
+  let encrypt = md5(request.body.password);
+  const [rows] = await conection.execute(
+    "SELECT * FROM users WHERE userName = ? AND password = ?",
+    [request.body.userName, encrypt]
   );
+  console.log(rows);
+
+  if (rows.length === 0) {
+    response.status(404).send("Usuario incorrecto")
+  } else {
+    response.status(200).send("Usuario correcto")
+  }
 });
 
-app.post("/insertUser", (request, response) => {
-  conectar();
-  connection.query(
-    `INSERT INTO users (name, surname, email, phoneNumber, driveLicense, password, userName) 
-    VALUES ('${request.body.name}', '${request.body.surname}', '${request.body.email}', ${request.body.phoneNumber},
-        '${request.body.driveLicense}', '${request.body.password}', '${request.body.userName}');`,
-    (err, rows, fields) => {
-      if (err) throw err;
-      response.json(rows);
-    }
+app.post("/insertUser", async (request, response) => {
+  let conection = await conectar();
+  let encrypt = md5(request.body.password);
+  const [rows] = await conection.execute(
+    "INSERT INTO users (name, surname, email, phoneNumber, password, userName) VALUES (?,?,?,?,?,?,?)",
+    [
+      request.body.name,
+      request.body.surname,
+      request.body.email,
+      request.body.phoneNumber,
+      encrypt,
+      request.body.userName,
+    ]
   );
+  console.log(rows);
+  response.json(true);
 });
 
 app.delete("/deleteUser/:id", (request, response) => {
@@ -65,8 +82,6 @@ app.get("/getProduct/:van", (request, response) => {
     }
   );
 });
-
-
 
 const PORT = 3001;
 app.listen(PORT, () => {

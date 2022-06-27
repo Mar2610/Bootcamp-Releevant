@@ -7,6 +7,7 @@ import Booking from "./views/Booking";
 import AboutUs from "./views/AboutUs";
 import Profile from "./views/Profile";
 import Vans from "./views/Vans";
+import RegisterForm from "./views/RegisterForm";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <div className="App">
         <Navbar />
       </div>
+      <br/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -21,6 +23,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/vans" element={<Vans />} />
+        <Route path="/form" element={<RegisterForm />} />
       </Routes>
     </BrowserRouter>
   );

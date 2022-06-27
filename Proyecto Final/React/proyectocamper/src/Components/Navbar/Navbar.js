@@ -14,8 +14,17 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "../../Components/Link";
 
-const pages = [{label:"Home", linkTo:"/"}, {label:"¿Quiénes somos?", linkTo: "/aboutus"}, {label: "Nuestras campers", linkTo: "/vans"}, {label: "Haz tu reserva", linkTo: "/booking"}];
-const settings = [{label: "Inicio de sesión", linkTo: "/login"}, {label: "Mi perfil", linkTo: "/profile"}, {label: "Logout", linkTo: "/"}];
+const pages = [
+  { label: "Home", linkTo: "/" },
+  { label: "¿Quiénes somos?", linkTo: "/aboutus" },
+  { label: "Nuestras campers", linkTo: "/vans" },
+  { label: "Haz tu reserva", linkTo: "/booking" },
+];
+const settings = [
+  { label: "Inicio de sesión", linkTo: "/login" },
+  { label: "Mi perfil", linkTo: "/profile" },
+  { label: "Regístrate", linkTo: "/form" },
+];
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -37,7 +46,7 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor: "#ff9800"}}>
+    <AppBar position="static" sx={{ backgroundColor: "#ff9800" }}>
       <Container maxWidth="xl">
         <Toolbar>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -89,7 +98,7 @@ export default function Navbar() {
               }}
             >
               {pages.map((page) => (
-               <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
@@ -117,13 +126,13 @@ export default function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link to={page.linkTo}>
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page.label}
-              </Button>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page.label}
+                </Button>
               </Link>
             ))}
           </Box>
@@ -151,9 +160,9 @@ export default function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem  key={setting} onClick={handleCloseUserMenu}>
-                  <Link  to={setting.linkTo}>
-                  <Typography textAlign="center">{setting.label}</Typography>
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Link to={setting.linkTo}>
+                    <Typography textAlign="center">{setting.label}</Typography>
                   </Link>
                 </MenuItem>
               ))}
