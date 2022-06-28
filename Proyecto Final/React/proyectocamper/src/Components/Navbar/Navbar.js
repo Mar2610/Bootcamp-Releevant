@@ -13,6 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "../../Components/Link";
+import { useAuthContext } from "../../Contexts/LoginContext";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const pages = [
   { label: "Home", linkTo: "/" },
@@ -27,6 +29,7 @@ const settings = [
 ];
 
 export default function Navbar() {
+  const { logout, isAuthenticated } = useAuthContext();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -136,13 +139,17 @@ export default function Navbar() {
               </Link>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" sx={{ bgcolor: "green" }}></Avatar>
               </IconButton>
             </Tooltip>
+            {isAuthenticated && <Tooltip title="Logout">
+              <IconButton onClick={logout} sx={{ color: "black" }}>
+                <ExitToAppIcon fontSize="large"></ExitToAppIcon>
+              </IconButton>
+            </Tooltip>}
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

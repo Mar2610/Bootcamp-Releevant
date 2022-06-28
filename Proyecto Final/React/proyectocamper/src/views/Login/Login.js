@@ -1,7 +1,9 @@
+import { useAuthContext } from "../../Contexts/LoginContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const { loginUser } = useAuthContext();
   const navigate = useNavigate();
 
   async function login(e) {
@@ -13,9 +15,12 @@ export default function Login() {
     };
 
     const response = await fetch("http://localhost:3001/login", login);
-    response.status === 200
-      ? navigate("/profile")
-      : alert("Usuario o contraseña incorrectos");
+    if (response.status === 200) {
+      navigate("/profile");
+      loginUser();
+    } else {
+      alert("Usuario o contraseña incorrectos");
+    }
   }
 
   const [user, setUser] = useState({
