@@ -3,8 +3,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const { loginUser } = useAuthContext();
+  const { setAuth } = useAuthContext();
   const navigate = useNavigate();
+  const MY_AUTH_APP = "MY_AUTH_APP";
+  const [user, setUser] = useState({
+    userName: "",
+    password: "",
+  });
 
   async function login(e) {
     e.preventDefault();
@@ -14,19 +19,18 @@ export default function Login() {
       body: JSON.stringify(user),
     };
 
+ 
     const response = await fetch("http://localhost:3001/login", login);
     if (response.status === 200) {
+      const data = await response.json()
+      setAuth(data);
+      window.localStorage.setItem(MY_AUTH_APP, JSON.stringify(data));
       navigate("/profile");
-      loginUser();
     } else {
       alert("Usuario o contraseña incorrectos");
     }
   }
 
-  const [user, setUser] = useState({
-    userName: "",
-    password: "",
-  });
 
   function handleInputs(e) {
     setUser((user) => ({ ...user, [e.target.name]: e.target.value }));

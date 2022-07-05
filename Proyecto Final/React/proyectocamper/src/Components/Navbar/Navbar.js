@@ -15,6 +15,8 @@ import AdbIcon from "@mui/icons-material/Adb";
 import Link from "../../Components/Link";
 import { useAuthContext } from "../../Contexts/LoginContext";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 const pages = [
   { label: "Home", linkTo: "/" },
@@ -29,9 +31,11 @@ const settings = [
 ];
 
 export default function Navbar() {
-  const { logout, isAuthenticated } = useAuthContext();
+  const { setAuth, auth } = useAuthContext();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
+  const MY_AUTH_APP = "MY_AUTH_APP";
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -39,6 +43,12 @@ export default function Navbar() {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
+  const logout = useCallback(function () {
+    window.localStorage.removeItem(MY_AUTH_APP);
+    setAuth(null);
+    navigate("/");
+  }, [MY_AUTH_APP, navigate, setAuth]);
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -145,11 +155,13 @@ export default function Navbar() {
                 <Avatar alt="Remy Sharp" sx={{ bgcolor: "green" }}></Avatar>
               </IconButton>
             </Tooltip>
-            {isAuthenticated && <Tooltip title="Logout">
-              <IconButton onClick={logout} sx={{ color: "black" }}>
-                <ExitToAppIcon fontSize="large"></ExitToAppIcon>
-              </IconButton>
-            </Tooltip>}
+            {auth && (
+              <Tooltip title="Logout">
+                <IconButton onClick={logout} sx={{ color: "black" }}>
+                  <ExitToAppIcon fontSize="large"></ExitToAppIcon>
+                </IconButton>
+              </Tooltip>
+            )}
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -167,7 +179,7 @@ export default function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
                   <Link to={setting.linkTo}>
                     <Typography textAlign="center">{setting.label}</Typography>
                   </Link>

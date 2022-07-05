@@ -1,3 +1,10 @@
+import { useAuthContext } from "../../Contexts/LoginContext";
+
 export default function Profile() {
-    return <h1>Profile</h1>
+    const {auth} = useAuthContext();
+  return (
+  <div>
+    <p>{auth.name}</p>
+  </div>
+  )
 }

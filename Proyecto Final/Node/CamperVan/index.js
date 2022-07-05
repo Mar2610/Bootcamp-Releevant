@@ -39,7 +39,7 @@ app.post("/login", async (request, response) => {
   if (rows.length === 0) {
     response.status(404).send("Usuario incorrecto")
   } else {
-    response.status(200).send("Usuario correcto")
+    response.status(200).send(rows[0])
   }
 });
 
@@ -59,6 +59,17 @@ app.post("/insertUser", async (request, response) => {
   );
   console.log(rows);
   response.json(true);
+});
+
+app.post("/insertDate", async (request, response) => {
+  let conection = await conectar();
+  const [rows] = await conection.execute(
+    "INSERT INTO dates (date) VALUES (?)",
+    [
+      request.body.date
+    ]
+  );
+  response.json(rows);
 });
 
 app.delete("/deleteUser/:id", (request, response) => {
