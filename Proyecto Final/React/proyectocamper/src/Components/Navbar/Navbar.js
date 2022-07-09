@@ -11,12 +11,13 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import Link from "../../Components/Link";
 import { useAuthContext } from "../../Contexts/LoginContext";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import Logo2 from "../../Images/Logo2.png";
 
 const pages = [
   { label: "Home", linkTo: "/" },
@@ -44,11 +45,18 @@ export default function Navbar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const logout = useCallback(function () {
-    window.localStorage.removeItem(MY_AUTH_APP);
-    setAuth(null);
-    navigate("/");
-  }, [MY_AUTH_APP, navigate, setAuth]);
+  const logout = useCallback(
+    function () {
+      window.localStorage.removeItem(MY_AUTH_APP);
+      setAuth(null);
+      navigate("/");
+    },
+    [MY_AUTH_APP, navigate, setAuth]
+  );
+
+  const admin = () => {
+    navigate("/admin");
+  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -59,10 +67,9 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#ff9800" }}>
+    <AppBar position="static" sx={{ backgroundColor: "#009688" }}>
       <Container maxWidth="xl">
         <Toolbar>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -72,13 +79,13 @@ export default function Navbar() {
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
+              fontWeight: 100,
+              letterSpacing: ".1rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            LOGO
+            <img alt="logo" src={Logo2} width="80px" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -112,17 +119,24 @@ export default function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.label}</Typography>
+                  <Link to={page.linkTo}>
+                    <Button
+                      key={page}
+                      onClick={handleCloseNavMenu}
+                      sx={{ my: 2, color: "black", display: "block" }}
+                    >
+                      {page.label}
+                    </Button>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -134,7 +148,7 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            <img alt="logo" src={Logo2} width="80px" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -152,13 +166,20 @@ export default function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" sx={{ bgcolor: "green" }}></Avatar>
+                <Avatar alt="Remy Sharp" sx={{ bgcolor: "#fb8c00" }}></Avatar>
               </IconButton>
             </Tooltip>
             {auth && (
               <Tooltip title="Logout">
                 <IconButton onClick={logout} sx={{ color: "black" }}>
                   <ExitToAppIcon fontSize="large"></ExitToAppIcon>
+                </IconButton>
+              </Tooltip>
+            )}
+            {auth && auth.rol === 1 && (
+              <Tooltip title="Admin">
+                <IconButton onClick={admin} sx={{ color: "#ffc107" }}>
+                  <AdminPanelSettingsIcon fontSize="large"></AdminPanelSettingsIcon>
                 </IconButton>
               </Tooltip>
             )}

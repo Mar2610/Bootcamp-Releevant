@@ -19,18 +19,16 @@ export default function Login() {
       body: JSON.stringify(user),
     };
 
- 
     const response = await fetch("http://localhost:3001/login", login);
     if (response.status === 200) {
-      const data = await response.json()
+      const data = await response.json();
       setAuth(data);
       window.localStorage.setItem(MY_AUTH_APP, JSON.stringify(data));
-      navigate("/profile");
+      navigate("/");
     } else {
       alert("Usuario o contraseña incorrectos");
     }
   }
-
 
   function handleInputs(e) {
     setUser((user) => ({ ...user, [e.target.name]: e.target.value }));

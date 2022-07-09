@@ -8,10 +8,8 @@ const AuthContext = createContext({
 const MY_AUTH_APP = "MY_AUTH_APP";
 
 export default function AuthContextProvider({ children }) {
-  const user = JSON.parse(window.localStorage.getItem(MY_AUTH_APP))
-  const [auth, setAuth] = useState(
-    user ?? null
-  );
+  const user = JSON.parse(window.localStorage.getItem(MY_AUTH_APP));
+  const [auth, setAuth] = useState(user ?? null);
 
   const value = useMemo(
     () => ({

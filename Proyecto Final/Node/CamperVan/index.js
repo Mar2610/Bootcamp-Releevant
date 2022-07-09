@@ -1,7 +1,6 @@
 const express = require("express"); // Con require se declara que es necesario la librería express
 const app = express(); // Nuestra aplicación va a usar express y puede acceder a todas las funciones de la librería
 app.use(express.json());
-// const mysql = require("mysql");
 const cors = require("cors");
 app.use(cors());
 const md5 = require("md5");
@@ -17,15 +16,6 @@ async function conectar() {
   });
 }
 
-// function conectar() {
-//   connection.connect(function (err) {
-//     if (err) {
-//       return console.error("error: " + err.message);
-//     }
-//     console.log("Conectado!");
-//   });
-// }
-
 app.post("/login", async (request, response) => {
   let conection = await conectar();
 
@@ -37,9 +27,9 @@ app.post("/login", async (request, response) => {
   console.log(rows);
 
   if (rows.length === 0) {
-    response.status(404).send("Usuario incorrecto")
+    response.status(404).send("Usuario incorrecto");
   } else {
-    response.status(200).send(rows[0])
+    response.status(200).send(rows[0]);
   }
 });
 
@@ -47,7 +37,7 @@ app.post("/insertUser", async (request, response) => {
   let conection = await conectar();
   let encrypt = md5(request.body.password);
   const [rows] = await conection.execute(
-    "INSERT INTO users (name, surname, email, phoneNumber, password, userName) VALUES (?,?,?,?,?,?,?)",
+    "INSERT INTO users (name, surname, email, phoneNumber, password, userName, rol) VALUES (?,?,?,?,?,?,?)",
     [
       request.body.name,
       request.body.surname,
@@ -55,6 +45,7 @@ app.post("/insertUser", async (request, response) => {
       request.body.phoneNumber,
       encrypt,
       request.body.userName,
+      2,
     ]
   );
   console.log(rows);
@@ -64,10 +55,24 @@ app.post("/insertUser", async (request, response) => {
 app.post("/insertDate", async (request, response) => {
   let conection = await conectar();
   const [rows] = await conection.execute(
-    "INSERT INTO dates (date) VALUES (?)",
-    [
-      request.body.date
-    ]
+    "INSERT INTO dates (startDate, endDate) VALUES (?,?)",
+    [request.body.startDate, request.body.endDate]
+  );
+  response.json(rows);
+});
+
+app.get("/getBooks", async (request, response) => {
+  let conection = await conectar();
+  const [rows] = await conection.execute(
+    "SELECT startDate, endDate FROM dates"
+  );
+  response.json(rows);
+});
+
+app.get("/getUsers", async (request, response) => {
+  let conection = await conectar();
+  const [rows] = await conection.execute(
+    "SELECT * FROM users"
   );
   response.json(rows);
 });

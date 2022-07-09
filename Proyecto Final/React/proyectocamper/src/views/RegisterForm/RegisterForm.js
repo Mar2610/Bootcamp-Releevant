@@ -34,7 +34,7 @@ export default function RegisterForm() {
       requestUser
     );
     if (response.ok) {
-      navigate("/profile");
+      navigate("/");
     }
   }
 
