@@ -52,11 +52,11 @@ app.post("/insertUser", async (request, response) => {
   response.json(true);
 });
 
-app.post("/insertDate", async (request, response) => {
+app.post("/insertDate/:userName", async (request, response) => {
   let conection = await conectar();
   const [rows] = await conection.execute(
-    "INSERT INTO dates (startDate, endDate) VALUES (?,?)",
-    [request.body.startDate, request.body.endDate]
+    "INSERT INTO cart2 (userName, startDate, endDate) VALUES (?,?,?)",
+    [request.params.userName, request.body.startDate, request.body.endDate]
   );
   response.json(rows);
 });
@@ -64,39 +64,42 @@ app.post("/insertDate", async (request, response) => {
 app.get("/getBooks", async (request, response) => {
   let conection = await conectar();
   const [rows] = await conection.execute(
-    "SELECT startDate, endDate FROM dates"
+    "SELECT * FROM cart2"
   );
   response.json(rows);
 });
 
 app.get("/getUsers", async (request, response) => {
   let conection = await conectar();
-  const [rows] = await conection.execute(
-    "SELECT * FROM users"
-  );
+  const [rows] = await conection.execute("SELECT * FROM users");
   response.json(rows);
 });
 
-app.delete("/deleteUser/:id", (request, response) => {
-  conectar();
-  connection.query(
-    `DELETE FROM users WHERE idUsers=${request.params.id}`,
-    (err, rows, fields) => {
-      if (err) throw err;
-      response.json(rows);
-    }
+app.delete("/deleteUser/:idUsers", async function (request, response) {
+  connection = await conectar();
+  await connection.execute(
+    "Delete from `users` where idUsers=?;",
+    [request.params.idUsers]
   );
+  response.json("Usuario eliminado");
 });
 
-app.get("/getProduct/:van", (request, response) => {
-  conectar();
-  connection.query(
-    `SELECT * FROM products where van="${request.params.van}"`,
-    (err, rows, fields) => {
-      if (err) throw err;
-      response.json(rows);
-    }
+app.put("/updateUser/:idUsers", async function (request, response) {
+  connection = await conectar();
+  let encrypt = md5(request.body.password);
+  await connection.execute(
+    "Update `users` set  name=?, surname=?, email=?, phoneNumber=?, password=?, userName=? where idUsers=?;",
+    [
+      request.body.name,
+      request.body.surname,
+      request.body.email,
+      request.body.phoneNumber,
+      request.params.idUsers,
+      encrypt,
+      request.body.userName
+    ]
   );
+  response.json("Usuario actualizado");
 });
 
 const PORT = 3001;

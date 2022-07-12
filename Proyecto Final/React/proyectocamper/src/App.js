@@ -11,13 +11,13 @@ import RegisterForm from "./views/RegisterForm";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
 import Admin from "./views/Admin";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Navbar />
-      </div>
       {/* <br /> */}
       <Routes>
         {/* <Route path="/booking" element={<PrivateRoute />}> */}
@@ -33,6 +33,8 @@ function App() {
         <Route path="/form" element={<RegisterForm />} />
         {/* </Route> */}
       </Routes>
+      </div>
+      <Footer/>
     </BrowserRouter>
   );
 }

@@ -1,9 +1,15 @@
 import { useAuthContext } from "../../Contexts/LoginContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+import { Typography } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { Button } from "@mui/material";
 
 export default function Login() {
-  const { setAuth } = useAuthContext();
+  const { auth, setAuth } = useAuthContext();
   const navigate = useNavigate();
   const MY_AUTH_APP = "MY_AUTH_APP";
   const [user, setUser] = useState({
@@ -35,31 +41,69 @@ export default function Login() {
   }
 
   return (
-    <>
-      <div>
-        <h1>Login</h1>
-        <form onSubmit={login}>
-          <label>Usuario: </label>
-          <input
-            type="text"
-            value={user.userName}
-            name="userName"
-            onChange={handleInputs}
-          />
-          <br />
-          <br />
-          <label>Contraseña: </label>
-          <input
-            type="password"
-            value={user.password}
-            name="password"
-            onChange={handleInputs}
-          />
-          <br />
-          <br />
-          <button>Iniciar sesión</button>
-        </form>
-      </div>
-    </>
+    <Box justifyContent="center" display="flex" p={4}>
+      <>
+        {!auth ? (
+          <Box
+            component="form"
+            onSubmit={login}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              backgroundColor: "#ffe082",
+              width: "30vw",
+              height: "55vh",
+              borderRadius: "16px",
+            }}
+          >
+            <Typography p={3} variant="h5" sx={{ fontWeight: "bold" }}>
+              Inicio de sesión
+            </Typography>
+            <Box p={1} onSubmit={login}>
+              <Typography>Nombre de usuario:</Typography>
+              <TextField
+                id="outlined-required"
+                label="Nombre de usuario"
+                type="text"
+                name="userName"
+                onChange={handleInputs}
+                value={user.userName}
+                sx={{ backgroundColor: "white" }}
+              />
+            </Box>
+            <Box p={1}>
+              <Typography>Contraseña:</Typography>
+              <TextField
+                id="outlined-required"
+                label="Contraseña"
+                type="password"
+                name="password"
+                onChange={handleInputs}
+                value={user.password}
+                sx={{ backgroundColor: "white" }}
+              />
+            </Box>
+            <Button
+              type="submit"
+              sx={{
+                backgroundColor: "#7cb342",
+                color: "black",
+                fontWeight: "bold",
+                m: 2,
+              }}
+            >
+              Iniciar sesión
+            </Button>
+          </Box>
+        ) : (
+          <Stack sx={{ width: "100%" }} display="flex" alignItems="center">
+            <Alert variant="filled" severity="error" sx={{ width: "300" }}>
+              Sesión iniciada
+            </Alert>
+          </Stack>
+        )}
+      </>
+    </Box>
   );
 }

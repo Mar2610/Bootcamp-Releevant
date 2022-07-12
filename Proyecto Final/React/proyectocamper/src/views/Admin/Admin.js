@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import { useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import BookList from "../../Components/List/BookList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,29 +52,27 @@ export default function BasicTabs() {
     { field: "email", headerName: "Email", width: 130 },
     { field: "phoneNumber", headerName: "Teléfono", width: 130 },
     { field: "userName", headerName: "Nombre de usuario", width: 150 },
-
   ];
 
   useEffect(function () {
     async function getUsers() {
       const response = await fetch("http://localhost:3001/getUsers");
       const data = await response.json();
-      
+
       setUsers(data);
     }
     getUsers();
   }, []);
 
-  const rows = users?.map(user => (
-    {
-      id: user.idUsers, widht: 150,
-      name: user.name,
-      surname: user.surname,
-      phoneNumber: user.phoneNumber,
-      email: user.email,
-      userName: user.userName
-    }
-  ))
+  const rows = users?.map((user) => ({
+    id: user.idUsers,
+    widht: 150,
+    name: user.name,
+    surname: user.surname,
+    phoneNumber: user.phoneNumber,
+    email: user.email,
+    userName: user.userName,
+  }));
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -81,7 +80,7 @@ export default function BasicTabs() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "success" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "success", backgroundColor: "white" }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -89,25 +88,22 @@ export default function BasicTabs() {
         >
           <Tab label="Usuarios registrados" {...a11yProps(0)} />
           <Tab label="Listado de reservas" {...a11yProps(1)} />
-          <Tab label="Productos" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <div style={{ height: 500, width: "100%" }}>
+        <div style={{ height: 400, width: "100%", backgroundColor: "white" }}>
           <DataGrid
             rows={rows ?? []}
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
             checkboxSelection
+            sx={{ height: 400, border: 1 }}
           />
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
+      <BookList/>
       </TabPanel>
     </Box>
   );

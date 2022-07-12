@@ -1,81 +1,187 @@
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { DateRangePicker } from "react-date-range";
-import { useState, useEffect } from "react";
-import { Button } from "@mui/material";
-import eachDayOfInterval from "date-fns/eachDayOfInterval";
+import { useState } from "react";
+import { Button, Grid } from "@mui/material";
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Typography from "@mui/material/Typography";
+import Calendar from "../../Components/Calendar";
+import BookResume from "../../Components/BookResume/BookResume";
+import { useAuthContext } from "../../Contexts/LoginContext";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
+import Payment from "../../Components/Payment/Payment";
 
 export default function Booking() {
   const navigate = useNavigate();
-  const [disabled, setDisabled] = useState(null);
+  const { auth } = useAuthContext();
   const [date, setDate] = useState({
     startDate: new Date(),
     endDate: new Date(),
     key: "selection",
   });
 
-  function handleSelect(data) {
-    let startDate = "";
-    let endDate = "";
+  const steps = [
+    "Elige tus fechas",
+    "Resumen de tu reserva",
+    "Realiza el pago",
+  ];
+  const [activeStep, setActiveStep] = useState(0);
+  const [skipped, setSkipped] = useState(new Set());
 
-    for (let i in data) {
-      startDate = data[i].startDate;
-      endDate = data[i].endDate;
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
+  };
+
+  const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
     }
 
-    setDate({
-      startDate: startDate,
-      endDate: endDate,
-    });
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
+  function login() {
+    navigate("/login");
   }
 
-  async function handleDates(e) {
-    e.preventDefault();
-    const bookDate = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        startDate: date.startDate.toDateString(),
-        endDate: date.endDate.toDateString(),
-      }),
-    };
-
-    const response = await fetch("http://localhost:3001/insertDate", bookDate);
-    const data = await response.json();
-    if (data.ok) {
-      setDate(data);
-    }
+  function form() {
+    navigate("/form");
   }
 
-  useEffect(function () {
-    async function disabledDates() {
-      const response = await fetch("http://localhost:3001/getBooks");
-      const datas = await response.json();
-      let disDays = datas.map((item) =>
-        eachDayOfInterval({
-          start: new Date(item.startDate),
-          end: new Date(item.endDate),
-        })
-      );
-      setDisabled(disDays.flat());
-    }
-    disabledDates();
-  }, []);
+  function finish() {
+    navigate("/");
+  }
 
-  console.log(disabled);
+  const stepsComponent = {
+    0: <Calendar date={date} setDate={setDate} />,
+    1: <BookResume date={date} />,
+    2: <Payment />,
+  };
 
-  // console.log(dis);
+  console.log(date);
 
   return (
-    <div>
-      <DateRangePicker
-        ranges={[date]}
-        onChange={handleSelect}
-        disabledDates={disabled ?? []}
-        dateDisplayFormat={"yyyy.MM.dd"}
-      />
-      <Button onClick={handleDates}>Enviar</Button>
-    </div>
+    <>
+      {auth ? (
+        <Box sx={{ width: "90%", m: 5, justifyContent: "center" }}>
+          <Stepper activeStep={activeStep}>
+            {steps.map((label, index) => {
+              const stepProps = {};
+              const labelProps = {};
+              return (
+                <Step key={label} {...stepProps}>
+                  <StepLabel {...labelProps}>{label}</StepLabel>
+                </Step>
+              );
+            })}
+          </Stepper>
+          {activeStep === steps.length ? (
+            <>
+              <Box display="flex" justifyContent="center" p={5}>
+                <Alert
+                  sx={{
+                    height: 100,
+                    width: 300,
+                    display: "flex",
+                    textAlign: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  alignItems="center"
+                  spacing={2}
+                  severity="success"
+                >
+                  Reserva realizada con éxito!
+                </Alert>
+              </Box>
+              <Box>
+                <Button
+                  color="success"
+                  size="small"
+                  variant="contained"
+                  onClick={finish}
+                >
+                  Volver al inicio
+                </Button>
+                </Box>
+            </>
+          ) : (
+            <>
+              <Box display="flex" justifyContent="center" p={1}>
+                {stepsComponent[activeStep]}
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                <Button
+                  color="success"
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                >
+                  Anterior
+                </Button>
+                <Button
+                  color="success"
+                  size="small"
+                  variant="contained"
+                  onClick={handleNext}
+                >
+                  {activeStep === steps.length - 1 ? "Pagar y finalizar" : "Siguiente"}
+                </Button>
+              </Box>
+            </>
+          )}
+        </Box>
+      ) : (
+        <Box display="flex" justifyContent="center" p={5}>
+          <Stack
+            sx={{
+              height: 300,
+              width: "30%",
+              textAlign: "center",
+              justifyContent: "center",
+            }}
+            spacing={2}
+          >
+            <Alert severity="warning" sx={{ backgroundColor: "#ef5350" }}>
+              <AlertTitle sx={{ textAlign: "center" }}>Atención</AlertTitle>
+              Debes registrarte o iniciar sesión{" "}
+              <strong>para realizar tu reserva</strong>
+            </Alert>
+            <>
+              <Box>
+                <Button
+                  sx={{ backgroundColor: "#ccff90", color: "black", m: 2 }}
+                  onClick={login}
+                >
+                  Inicia sesión
+                </Button>
+                <Button
+                  sx={{ backgroundColor: "#eeff41", color: "black", m: 2 }}
+                  onClick={form}
+                >
+                  Regístrate
+                </Button>
+              </Box>
+            </>
+          </Stack>
+        </Box>
+      )}
+    </>
   );
 }

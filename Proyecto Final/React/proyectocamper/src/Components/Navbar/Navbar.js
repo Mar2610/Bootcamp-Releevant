@@ -13,16 +13,15 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Link from "../../Components/Link";
 import { useAuthContext } from "../../Contexts/LoginContext";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import Logo2 from "../../Images/Logo2.png";
+import Logo4 from "../../Images/Logo4.png";
 
 const pages = [
   { label: "Home", linkTo: "/" },
-  { label: "¿Quiénes somos?", linkTo: "/aboutus" },
-  { label: "Nuestras campers", linkTo: "/vans" },
+  { label: "Van", linkTo: "/vans" },
   { label: "Haz tu reserva", linkTo: "/booking" },
 ];
 const settings = [
@@ -67,7 +66,7 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#009688" }}>
+    <AppBar position="sticky" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl">
         <Toolbar>
           <Typography
@@ -77,15 +76,15 @@ export default function Navbar() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", md: "flex"},
               fontFamily: "monospace",
               fontWeight: 100,
-              letterSpacing: ".1rem",
+              letterSpacing: ".2rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            <img alt="logo" src={Logo2} width="80px" />
+            <img alt="logo" src={Logo4} height="50px" width="300px" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -96,6 +95,7 @@ export default function Navbar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{color: "black"}}
             >
               <MenuIcon />
             </IconButton>
@@ -118,12 +118,12 @@ export default function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem alignItem="center" key={page} onClick={handleCloseNavMenu}>
                   <Link to={page.linkTo}>
                     <Button
                       key={page}
                       onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: "black", display: "block" }}
+                      sx={{ my: 1, color: "black", display: "block" }}
                     >
                       {page.label}
                     </Button>
@@ -148,15 +148,15 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            <img alt="logo" src={Logo2} width="80px" />
+            <img alt="logo" src={Logo4} width="80px" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link to={page.linkTo}>
                 <Button
                   key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  onClick={handleCloseNavMenu}    v
+                  sx={{ my: 2, color: "black", display: "block" }}
                 >
                   {page.label}
                 </Button>
@@ -165,20 +165,20 @@ export default function Navbar() {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr:2 }}>
                 <Avatar alt="Remy Sharp" sx={{ bgcolor: "#fb8c00" }}></Avatar>
               </IconButton>
             </Tooltip>
             {auth && (
               <Tooltip title="Logout">
                 <IconButton onClick={logout} sx={{ color: "black" }}>
-                  <ExitToAppIcon fontSize="large"></ExitToAppIcon>
+                  <LogoutIcon sx={{mr: 1}} fontSize="large"></LogoutIcon>
                 </IconButton>
               </Tooltip>
             )}
             {auth && auth.rol === 1 && (
               <Tooltip title="Admin">
-                <IconButton onClick={admin} sx={{ color: "#ffc107" }}>
+                <IconButton onClick={admin} sx={{ color: "#66bb6a" }}>
                   <AdminPanelSettingsIcon fontSize="large"></AdminPanelSettingsIcon>
                 </IconButton>
               </Tooltip>
@@ -200,11 +200,11 @@ export default function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
                   <Link to={setting.linkTo}>
-                    <Typography textAlign="center">{setting.label}</Typography>
-                  </Link>
+                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
+                    <Typography sx={{color: "black"}} textAlign="center">{setting.label}</Typography>
                 </MenuItem>
+                  </Link>
               ))}
             </Menu>
           </Box>
