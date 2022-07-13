@@ -15,6 +15,7 @@ import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
+    <>
     <BrowserRouter>
       <div className="App">
         <Navbar />
@@ -34,8 +35,8 @@ function App() {
         {/* </Route> */}
       </Routes>
       </div>
-      <Footer/>
     </BrowserRouter>
+      </>
   );
 }
 

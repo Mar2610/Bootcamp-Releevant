@@ -4,8 +4,9 @@ import { Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import format from "date-fns/format";
 import Chip from "@mui/material/Chip";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Camper3 from "../../Images/Camper3.jpg";
 
 export default function BookResume({ date }) {
   return (
@@ -18,19 +19,34 @@ export default function BookResume({ date }) {
           backgroundColor: "#ffe082",
           display: "flex",
           justifyContent: "center",
-          flexDirection: "column",
+          flexDirection: "row",
           borderRadius: "16px",
         }}
       >
-        <Typography variant="h5">
-          Detalles de tu reserva:
-        </Typography>
-        <Typography>
-          - Día de entrada: <Chip icon={<ArrowForwardIcon />} label={format(date.startDate, "dd/MM/yyyy")} variant="outlined" />
-        </Typography>
-        <Typography>
-          - Día de salida: <Chip icon={<ArrowBackIcon />} label={format(date.endDate, "dd/MM/yyyy")} variant="outlined" />
-        </Typography>
+        <Box m={9}>
+          <img alt="camper" src={Camper3} width="200px"></img>
+        </Box>
+        <Box sx={{ m: 8 }}>
+          <Typography>
+            ¡Genial! Estos son los detalles de tu reserva:
+          </Typography>
+          <Typography m={2}>
+            Día de entrada:{" "}
+            <Chip
+              icon={<ArrowForwardIcon />}
+              label={format(date.startDate, "dd/MM/yyyy")}
+              variant="outlined"
+            />
+          </Typography>
+          <Typography m={2}>
+            Día de salida:{" "}
+            <Chip
+              icon={<ArrowBackIcon />}
+              label={format(date.endDate, "dd/MM/yyyy")}
+              variant="outlined"
+            />
+          </Typography>
+        </Box>
       </Box>
     </Grid>
   );

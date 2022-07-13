@@ -86,7 +86,7 @@ export default function ImgMediaCard() {
       {auth ? (
         <Grid container md={12}>
           <Grid item md={6}>
-            <Card sx={{ maxWidth: 345, bgcolor: "#d4e157", m: 10 }}>
+            <Card sx={{ maxWidth: 345, bgcolor: "#ffe082", m: 10 }}>
               <CardMedia
                 component="img"
                 alt="green iguana"
@@ -143,8 +143,8 @@ export default function ImgMediaCard() {
                 noValidate
                 autoComplete="off"
               >
-                <Box sx={{ width: 600, bgcolor: "#d4e157" }}>
-                  <Typography sx={{p:3}} variant="h5">
+                <Box sx={{ height: 600, width: 600, bgcolor: "#ffe082" }}>
+                  <Typography sx={{p:2}} variant="h5">
                     Rellena los campos para editar tu perfil
                   </Typography>
                   <TextField
@@ -190,16 +190,17 @@ export default function ImgMediaCard() {
                     name="userName"
                     sx={{ bgcolor: "white" }}
                   />
-                </Box>
-                <Button
+                  <Button
                   color="success"
                   size="small"
                   variant="contained"
                   onClick={updateUsers}
                   sx={{m:2}}
                 >
-                  Editar
+                  CERRAR
                 </Button>
+                </Box>
+                
               </Box>
             )}
           </Grid>

@@ -97,8 +97,7 @@ export default function BasicTabs() {
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
-            checkboxSelection
-            sx={{ height: 400, border: 1 }}
+            sx={{ height: 400 }}
           />
         </div>
       </TabPanel>

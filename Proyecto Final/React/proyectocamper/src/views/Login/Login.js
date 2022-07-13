@@ -51,7 +51,7 @@ export default function Login() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              backgroundColor: "#ffe082",
+              backgroundColor: "#ffecb3",
               width: "30vw",
               height: "55vh",
               borderRadius: "16px",
@@ -64,7 +64,6 @@ export default function Login() {
               <Typography>Nombre de usuario:</Typography>
               <TextField
                 id="outlined-required"
-                label="Nombre de usuario"
                 type="text"
                 name="userName"
                 onChange={handleInputs}
@@ -76,7 +75,6 @@ export default function Login() {
               <Typography>Contraseña:</Typography>
               <TextField
                 id="outlined-required"
-                label="Contraseña"
                 type="password"
                 name="password"
                 onChange={handleInputs}

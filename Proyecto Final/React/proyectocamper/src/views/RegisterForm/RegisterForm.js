@@ -46,20 +46,23 @@ export default function RegisterForm() {
         sx={{
           "& .MuiTextField-root": { m: 3, width: "200" },
           display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              backgroundColor: "#ffe082",
-              width: "200",
-              height: "200",
-              borderRadius: "16px",
-              m: 2
+          flexDirection: "column",
+          alignItems: "center",
+          backgroundColor: "#ffe082",
+          width: "200",
+          height: "200",
+          borderRadius: "16px",
+          m: 5,
         }}
+        
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <Box sx={{m:2}}>
-        <Typography sx={{ fontWeight: "bold" }} variant="h5">Formulario de registro</Typography>
+        <Box sx={{ m: 2 }}>
+          <Typography sx={{ fontWeight: "bold" }} variant="h5">
+            Formulario de registro
+          </Typography>
           <TextField
             id="outlined-required"
             label="Nombre"
@@ -67,7 +70,7 @@ export default function RegisterForm() {
             name="name"
             value={newUser.name}
             onChange={handleInputs}
-            sx={{bgcolor: "white"}}
+            sx={{ bgcolor: "white" }}
           />
           <TextField
             id="outlined-required"
@@ -76,7 +79,7 @@ export default function RegisterForm() {
             name="surname"
             value={newUser.surname}
             onChange={handleInputs}
-            sx={{bgcolor: "white"}}
+            sx={{ bgcolor: "white" }}
           />
           <TextField
             id="outlined-required"
@@ -85,7 +88,7 @@ export default function RegisterForm() {
             name="email"
             value={newUser.email}
             onChange={handleInputs}
-            sx={{bgcolor: "white"}}
+            sx={{ bgcolor: "white" }}
           />
           <TextField
             id="outlined-number"
@@ -94,7 +97,7 @@ export default function RegisterForm() {
             name="phoneNumber"
             value={newUser.phoneNumber}
             onChange={handleInputs}
-            sx={{bgcolor: "white"}}
+            sx={{ bgcolor: "white" }}
           />
           <TextField
             id="outlined-required"
@@ -103,7 +106,7 @@ export default function RegisterForm() {
             name="userName"
             value={newUser.userName}
             onChange={handleInputs}
-            sx={{bgcolor: "white"}}
+            sx={{ bgcolor: "white" }}
           />
           <TextField
             id="outlined-required"
@@ -112,11 +115,16 @@ export default function RegisterForm() {
             name="password"
             value={newUser.password}
             onChange={handleInputs}
-            sx={{bgcolor: "white"}}
+            sx={{ bgcolor: "white" }}
           />
         </Box>
         <Box>
-          <Button sx={{m:2}} type="submit" variant="contained" color="success">
+          <Button
+            sx={{ m: 2 }}
+            type="submit"
+            variant="contained"
+            color="success"
+          >
             Enviar
           </Button>
         </Box>

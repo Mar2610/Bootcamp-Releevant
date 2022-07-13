@@ -1,1 +1,1 @@
-export {default} from "./Vans";
+export {default} from "./Vans2";

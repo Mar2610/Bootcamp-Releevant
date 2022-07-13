@@ -1,12 +1,11 @@
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { useState } from "react";
-import { Button, Grid } from "@mui/material";
+import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import Typography from "@mui/material/Typography";
 import Calendar from "../../Components/Calendar";
 import BookResume from "../../Components/BookResume/BookResume";
 import { useAuthContext } from "../../Contexts/LoginContext";
@@ -15,6 +14,7 @@ import AlertTitle from "@mui/material/AlertTitle";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import Payment from "../../Components/Payment/Payment";
+import "./bookin.css";
 
 export default function Booking() {
   const navigate = useNavigate();
@@ -24,6 +24,28 @@ export default function Booking() {
     endDate: new Date(),
     key: "selection",
   });
+
+  async function handleDates(e) {
+    e.preventDefault();
+    const bookDate = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        startDate: date.startDate.toDateString(),
+        endDate: date.endDate.toDateString(),
+      }),
+    };
+
+    const response = await fetch(
+      `http://localhost:3001/insertDate/${auth.userName}`,
+      bookDate
+    );
+    const data = await response.json();
+    if (response.status === 200) {
+      setDate(data);
+      setActiveStep(3);
+    }
+  }
 
   const steps = [
     "Elige tus fechas",
@@ -52,10 +74,6 @@ export default function Booking() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   function login() {
     navigate("/login");
   }
@@ -74,19 +92,29 @@ export default function Booking() {
     2: <Payment />,
   };
 
-  console.log(date);
+  console.log(activeStep);
 
   return (
     <>
       {auth ? (
         <Box sx={{ width: "90%", m: 5, justifyContent: "center" }}>
-          <Stepper activeStep={activeStep}>
+          <Stepper activeStep={activeStep} alternativeLabel={true}>
             {steps.map((label, index) => {
               const stepProps = {};
               const labelProps = {};
               return (
-                <Step key={label} {...stepProps}>
-                  <StepLabel {...labelProps}>{label}</StepLabel>
+                <Step
+                  sx={{ fontWeight: "bold", color: "red" }}
+                  key={label}
+                  {...stepProps}
+                >
+                  <StepLabel
+                    sx={{ fontWeight: "bold", color: "red" }}
+                    {...labelProps}
+                  >
+                    {" "}
+                    {label}{" "}
+                  </StepLabel>
                 </Step>
               );
             })}
@@ -119,14 +147,14 @@ export default function Booking() {
                 >
                   Volver al inicio
                 </Button>
-                </Box>
+              </Box>
             </>
           ) : (
             <>
               <Box display="flex" justifyContent="center" p={1}>
                 {stepsComponent[activeStep]}
               </Box>
-              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+              <Box sx={{ flex: "1 1 auto" }}>
                 <Button
                   color="success"
                   disabled={activeStep === 0}
@@ -139,9 +167,13 @@ export default function Booking() {
                   color="success"
                   size="small"
                   variant="contained"
-                  onClick={handleNext}
+                  onClick={
+                    activeStep === steps.length - 1 ? handleDates : handleNext
+                  }
                 >
-                  {activeStep === steps.length - 1 ? "Pagar y finalizar" : "Siguiente"}
+                  {activeStep === steps.length - 1
+                    ? "Pagar y finalizar"
+                    : "Siguiente"}
                 </Button>
               </Box>
             </>
@@ -172,7 +204,9 @@ export default function Booking() {
                   Inicia sesión
                 </Button>
                 <Button
-                  sx={{ backgroundColor: "#eeff41", color: "black", m: 2 }}
+                  sx={{ backgroundColor: "#eeff41", color: "black", m: 2, '&:hover': {
+                    backgroundColor: "orange"
+                  } }}
                   onClick={form}
                 >
                   Regístrate

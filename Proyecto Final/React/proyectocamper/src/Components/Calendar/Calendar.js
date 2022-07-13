@@ -22,27 +22,9 @@ export default function Calendar({date, setDate}) {
     }
 
     setDate({
-      startDate: startDate,
-      endDate: endDate,
+      startDate,
+      endDate
     });
-  }
-
-  async function handleDates(e) {
-    e.preventDefault();
-    const bookDate = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        startDate: date.startDate.toDateString(),
-        endDate: date.endDate.toDateString(),
-      }),
-    };
-
-    const response = await fetch(`http://localhost:3001/insertDate/${auth.userName}`, bookDate);
-    const data = await response.json();
-    if (data.ok) {
-      setDate(data);
-    }
   }
 
   useEffect(function () {
@@ -55,12 +37,12 @@ export default function Calendar({date, setDate}) {
           end: new Date(item.endDate),
         })
       );
+      console.log(disDays,'esto es disDays')
       setDisabled(disDays.flat());
     }
     disabledDates();
   }, []);
 
-  console.log(disabled)
 
   return (
     <Box
